@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <radialGradient id="og-glow" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="og-glow2" cx="20%" cy="75%" r="40%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="og-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="0.8" fill="#3f3f46" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#09090b"/>
+  <rect width="1200" height="630" fill="url(#og-dots)"/>
+  <rect width="1200" height="630" fill="url(#og-glow)"/>
+  <rect width="1200" height="630" fill="url(#og-glow2)"/>
+  <!-- tag -->
+  <rect x="80" y="160" width="180" height="30" rx="15" fill="none" stroke="#27272a" stroke-width="1"/>
+  <circle cx="98" cy="175" r="5" fill="#f97316" opacity="0.8"/>
+  <text x="112" y="180" font-family="monospace" font-size="12" letter-spacing="2.5" fill="#a1a1aa">ENGINEERING</text>
+  <!-- title -->
+  <text x="80" y="280" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="72" fill="#fafafa">Essential Hustle</text>
+  <text x="718" y="280" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="72" fill="#f97316">.</text>
+  <!-- subtitle -->
+  <text x="80" y="330" font-family="system-ui, sans-serif" font-size="24" fill="#a1a1aa">We build what others outsource.</text>
+  <!-- tech tags -->
+  <rect x="80" y="400" width="80" height="32" rx="16" fill="#111113" stroke="#27272a" stroke-width="1"/>
+  <text x="96" y="421" font-family="monospace" font-size="12" fill="#a1a1aa">DevOps</text>
+  <rect x="172" y="400" width="42" height="32" rx="16" fill="#111113" stroke="#27272a" stroke-width="1"/>
+  <text x="183" y="421" font-family="monospace" font-size="12" fill="#a1a1aa">AI</text>
+  <rect x="226" y="400" width="100" height="32" rx="16" fill="#111113" stroke="#27272a" stroke-width="1"/>
+  <text x="240" y="421" font-family="monospace" font-size="12" fill="#a1a1aa">Embedded</text>
+  <rect x="338" y="400" width="62" height="32" rx="16" fill="#111113" stroke="#27272a" stroke-width="1"/>
+  <text x="352" y="421" font-family="monospace" font-size="12" fill="#a1a1aa">Web</text>
+  <!-- domain -->
+  <text x="80" y="560" font-family="monospace" font-size="14" letter-spacing="2" fill="#71717a">essentialhustle.dev</text>
+  <!-- side line -->
+  <line x1="1120" y1="100" x2="1120" y2="530" stroke="#27272a" stroke-width="1" stroke-dasharray="4 4"/>
+</svg>

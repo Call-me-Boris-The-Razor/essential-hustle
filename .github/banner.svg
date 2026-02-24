@@ -40,7 +40,7 @@
   <rect x="406" y="230" width="114" height="28" rx="14" fill="#111113" stroke="#27272a" stroke-width="1"/>
   <text x="418" y="249" font-family="monospace" font-size="11" fill="#a1a1aa">Framer Motion</text>
   <!-- version -->
-  <text x="60" y="295" font-family="monospace" font-size="11" letter-spacing="1.5" fill="#71717a">v0.1.0</text>
+  <text x="60" y="295" font-family="monospace" font-size="11" letter-spacing="1.5" fill="#71717a">v0.2.0</text>
   <!-- side decoration -->
   <line x1="840" y1="60" x2="840" y2="260" stroke="#27272a" stroke-width="1" stroke-dasharray="4 4"/>
   <text x="855" y="168" font-family="monospace" font-size="9" letter-spacing="3" fill="#3f3f46" transform="rotate(90, 855, 168)">essentialhustle.dev</text>

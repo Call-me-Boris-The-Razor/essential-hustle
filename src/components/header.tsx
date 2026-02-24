@@ -3,19 +3,27 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SITE_CONFIG, NAV_LINKS, HERO_TEXT } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/use-active-section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
-const navLinkClass = (href: string, active: string | null, size: "sm" | "base" = "sm") =>
+const isAnchor = (href: string) => href.startsWith("#");
+
+const navLinkClass = (href: string, active: boolean, size: "sm" | "base" = "sm") =>
   `text-${size} transition-colors hover:text-text-primary ${
-    active === href ? "text-accent" : "text-text-secondary"
+    active ? "text-accent" : "text-text-secondary"
   }`;
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const sectionHrefs = useMemo(() => NAV_LINKS.map((l) => l.href), []);
+  const pathname = usePathname();
+  const sectionHrefs = useMemo(() => NAV_LINKS.filter((l) => isAnchor(l.href)).map((l) => l.href), []);
   const activeSection = useActiveSection(sectionHrefs);
+
+  const isActive = (href: string) =>
+    isAnchor(href) ? activeSection === href : pathname.startsWith(href);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -41,16 +49,27 @@ export const Header = () => {
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              aria-current={activeSection === link.href ? "true" : undefined}
-              className={navLinkClass(link.href, activeSection)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) =>
+            isAnchor(link.href) ? (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive(link.href) ? "true" : undefined}
+                className={navLinkClass(link.href, isActive(link.href))}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive(link.href) ? "true" : undefined}
+                className={navLinkClass(link.href, isActive(link.href))}
+              >
+                {link.label}
+              </Link>
+            ),
+          )}
           <ThemeToggle />
           <a
             href={`mailto:${SITE_CONFIG.email}`}
@@ -85,17 +104,29 @@ export const Header = () => {
             className="border-t border-border/50 bg-bg/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-6">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  aria-current={activeSection === link.href ? "true" : undefined}
-                  className={navLinkClass(link.href, activeSection, "base")}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {NAV_LINKS.map((link) =>
+                isAnchor(link.href) ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    aria-current={isActive(link.href) ? "true" : undefined}
+                    className={navLinkClass(link.href, isActive(link.href), "base")}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    aria-current={isActive(link.href) ? "true" : undefined}
+                    className={navLinkClass(link.href, isActive(link.href), "base")}
+                  >
+                    {link.label}
+                  </Link>
+                ),
+              )}
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-bg"

@@ -5,6 +5,7 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG, CONTACT_TEXT } from "@/lib/site-config";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { ContactForm } from "@/components/contact-form";
 
 export const Contact = () => (
   <section id="contact" aria-labelledby="contact-heading" className="relative py-32">
@@ -57,6 +58,8 @@ export const Contact = () => (
               <ArrowUpRight size={16} />
             </MagneticButton>
           </address>
+
+          <ContactForm />
         </motion.div>
       </div>
     </div>

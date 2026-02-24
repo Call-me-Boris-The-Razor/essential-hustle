@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { SITE_CONFIG, NAV_LINKS, HERO_TEXT } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/use-active-section";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navLinkClass = (href: string, active: string | null, size: "sm" | "base" = "sm") =>
   `text-${size} transition-colors hover:text-text-primary ${
@@ -50,6 +51,7 @@ export const Header = () => {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
           <a
             href={`mailto:${SITE_CONFIG.email}`}
             className="rounded-full bg-accent px-5 py-2 text-sm font-medium text-bg transition-colors hover:bg-accent-hover"
@@ -58,16 +60,19 @@ export const Header = () => {
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-text-secondary md:hidden"
-          aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: theme + menu toggle */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-text-secondary"
+            aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}

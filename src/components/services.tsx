@@ -3,38 +3,7 @@
 import { motion } from "framer-motion";
 import { SERVICES } from "@/lib/site-config";
 import { SectionHeading } from "@/components/ui/section-heading";
-
-const SERVICE_ICONS: Record<string, React.ReactNode> = {
-  devops: (
-    <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round">
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="7" rx="1" />
-      <rect x="3" y="14" width="7" height="7" rx="1" />
-      <path d="M17.5 14v7M14 17.5h7" />
-    </svg>
-  ),
-  ai: (
-    <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round">
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-      <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-    </svg>
-  ),
-  embedded: (
-    <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round">
-      <rect x="5" y="5" width="14" height="14" rx="2" />
-      <rect x="9" y="9" width="6" height="6" rx="1" />
-      <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
-    </svg>
-  ),
-  web: (
-    <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round">
-      <path d="M7 8l-4 4 4 4" />
-      <path d="M17 8l4 4-4 4" />
-      <path d="M14 4l-4 16" />
-    </svg>
-  ),
-};
+import { SERVICE_ICON_MAP } from "@/components/ui/icons";
 
 const CARD_VARIANTS = {
   hidden: { opacity: 0, y: 40 },
@@ -68,7 +37,7 @@ export const Services = () => (
           >
             {/* Icon */}
             <div className="mb-6 inline-flex rounded-xl bg-surface-2 p-3 text-accent transition-colors group-hover:bg-surface-3">
-              {SERVICE_ICONS[service.id]}
+              {SERVICE_ICON_MAP[service.id]}
             </div>
 
             <h3 className="font-display text-2xl font-bold text-text-primary">

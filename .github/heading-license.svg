@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 56" fill="none">
+  <rect width="900" height="56" rx="10" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+  <circle cx="28" cy="28" r="5" fill="#71717a" opacity="0.6"/>
+  <text x="48" y="33" font-family="monospace" font-size="13" letter-spacing="4" fill="#a1a1aa">LICENSE</text>
+  <!-- scale icon -->
+  <g transform="translate(858, 16)" stroke="#27272a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M12 2L2 7l10 5 10-5z"/>
+    <path d="M2 17l10 5 10-5"/>
+    <path d="M2 12l10 5 10-5"/>
+  </g>
+</svg>

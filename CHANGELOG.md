@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2025-02-25
+
+### Fixed
+- Header toggle button: added `type="button"` (was defaulting to submit)
+- not-found.tsx: replaced raw `<a>` with `next/link` for client-side routing (ESLint fix)
+
+### Changed
+- Extracted `navLinkClass()` helper — eliminates duplicated active state logic in header
+- Section descriptions moved to site-config (`SERVICES_SECTION`, `PROJECTS_SECTION`, `ABOUT_SECTION`)
+- New `staggerVariants()` factory in motion.ts — replaces boilerplate in 4 section components
+- `topic` meta tag derived from SERVICES instead of hardcoded string
+- `::selection` color uses `color-mix(var(--accent))` instead of hardcoded hex
+- Added skip-to-content link for keyboard navigation (WCAG 2.4.1)
+
 ## [0.3.1] - 2025-02-25
 
 ### Fixed

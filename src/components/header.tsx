@@ -57,6 +57,7 @@ export const Header = () => {
 
         {/* Mobile toggle */}
         <button
+          type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-text-secondary md:hidden"
           aria-label="Toggle menu"

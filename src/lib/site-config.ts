@@ -94,3 +94,10 @@ export const ABOUT_TEXT = {
     { value: "24/7", label: "Monitoring" },
   ],
 } as const;
+
+export const CONTACT_TEXT = {
+  label: "Let's talk",
+  headline: "Have a project in mind?",
+  description:
+    "We're always looking for interesting engineering challenges. Drop us a line and let's build something great.",
+} as const;

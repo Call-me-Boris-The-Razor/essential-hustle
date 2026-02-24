@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PROJECTS } from "@/lib/site-config";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import { PROJECTS, PROJECTS_SECTION } from "@/lib/site-config";
+import { staggerVariants } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const STATUS_STYLES = {
@@ -10,23 +10,16 @@ const STATUS_STYLES = {
   active: { label: "Active", className: "bg-accent-2/10 text-accent-2 border-accent-2/20" },
 } as const;
 
-const ROW_VARIANTS = {
-  hidden: { opacity: 0, x: -30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: { delay: 0.08 * i, duration: 0.5, ease: EASE_OUT_EXPO },
-  }),
-};
+const ROW_VARIANTS = staggerVariants({ x: -30 }, { stagger: 0.08 });
 
 export const Projects = () => (
   <section id="projects" aria-labelledby="projects-heading" className="relative py-32">
     <div className="mx-auto max-w-7xl px-6">
       <SectionHeading
         id="projects-heading"
-        label="Our work"
-        title="Projects"
-        description="Real systems running in production. Not demos, not prototypes."
+        label={PROJECTS_SECTION.label}
+        title={PROJECTS_SECTION.title}
+        description={PROJECTS_SECTION.description}
       />
 
       {/* Project list — editorial style, not card grid */}

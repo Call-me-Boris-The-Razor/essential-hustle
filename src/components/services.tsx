@@ -1,28 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SERVICES } from "@/lib/site-config";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import { SERVICES, SERVICES_SECTION } from "@/lib/site-config";
+import { staggerVariants } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SERVICE_ICON_MAP } from "@/components/ui/icons";
 
-const CARD_VARIANTS = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.1 * i, duration: 0.5, ease: EASE_OUT_EXPO },
-  }),
-};
+const CARD_VARIANTS = staggerVariants({ y: 40 });
 
 export const Services = () => (
   <section id="services" aria-labelledby="services-heading" className="relative py-32">
     <div className="mx-auto max-w-7xl px-6">
       <SectionHeading
         id="services-heading"
-        label="What we do"
-        title="Services"
-        description="End-to-end engineering across the full technology stack."
+        label={SERVICES_SECTION.label}
+        title={SERVICES_SECTION.title}
+        description={SERVICES_SECTION.description}
       />
 
       {/* Bento grid — asymmetric 2x2 on desktop */}

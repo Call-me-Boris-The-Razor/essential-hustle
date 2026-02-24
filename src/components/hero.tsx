@@ -3,18 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { SITE_CONFIG, HERO_TEXT } from "@/lib/site-config";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import { staggerVariants } from "@/lib/motion";
 import { DotGrid } from "@/components/ui/dot-grid";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
-const FADE_UP = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.15 * i, duration: 0.6, ease: EASE_OUT_EXPO },
-  }),
-};
+const FADE_UP = staggerVariants({ y: 30 }, { stagger: 0.15, duration: 0.6 });
 
 export const Hero = () => (
   <section className="relative flex min-h-screen items-center overflow-hidden">

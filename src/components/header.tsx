@@ -6,6 +6,11 @@ import { Menu, X } from "lucide-react";
 import { SITE_CONFIG, NAV_LINKS, HERO_TEXT } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/use-active-section";
 
+const navLinkClass = (href: string, active: string | null, size: "sm" | "base" = "sm") =>
+  `text-${size} transition-colors hover:text-text-primary ${
+    active === href ? "text-accent" : "text-text-secondary"
+  }`;
+
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const sectionHrefs = useMemo(() => NAV_LINKS.map((l) => l.href), []);
@@ -40,9 +45,7 @@ export const Header = () => {
               key={link.href}
               href={link.href}
               aria-current={activeSection === link.href ? "true" : undefined}
-              className={`text-sm transition-colors hover:text-text-primary ${
-                activeSection === link.href ? "text-accent" : "text-text-secondary"
-              }`}
+              className={navLinkClass(link.href, activeSection)}
             >
               {link.label}
             </a>
@@ -83,9 +86,7 @@ export const Header = () => {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   aria-current={activeSection === link.href ? "true" : undefined}
-                  className={`text-base transition-colors hover:text-text-primary ${
-                    activeSection === link.href ? "text-accent" : "text-text-secondary"
-                  }`}
+                  className={navLinkClass(link.href, activeSection, "base")}
                 >
                   {link.label}
                 </a>

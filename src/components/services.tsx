@@ -15,9 +15,10 @@ const CARD_VARIANTS = {
 };
 
 export const Services = () => (
-  <section id="services" className="relative py-32">
+  <section id="services" aria-labelledby="services-heading" className="relative py-32">
     <div className="mx-auto max-w-7xl px-6">
       <SectionHeading
+        id="services-heading"
         label="What we do"
         title="Services"
         description="End-to-end engineering across the full technology stack."
@@ -26,7 +27,7 @@ export const Services = () => (
       {/* Bento grid — asymmetric 2x2 on desktop */}
       <div className="grid gap-4 md:grid-cols-2">
         {SERVICES.map((service, i) => (
-          <motion.div
+          <motion.article
             key={service.id}
             custom={i}
             variants={CARD_VARIANTS}
@@ -61,7 +62,7 @@ export const Services = () => (
 
             {/* Hover glow — top-right corner */}
             <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-accent/5 opacity-0 blur-3xl transition-opacity group-hover:opacity-100" />
-          </motion.div>
+          </motion.article>
         ))}
       </div>
     </div>

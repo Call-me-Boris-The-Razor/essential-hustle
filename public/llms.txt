@@ -1,0 +1,34 @@
+# Essential Hustle
+
+> Engineering studio — DevOps, AI, Embedded, Web
+
+Essential Hustle is a small engineering team based in Asia that builds
+infrastructure, integrates AI, ships embedded firmware, and develops web apps.
+Every project runs in production. No prototypes gathering dust.
+
+## Services
+
+- DevOps & Cloud: Docker orchestration, CI/CD pipelines, server hardening, monitoring
+- AI Integration: On-premise LLM deployment, speech synthesis, whisper transcription, custom pipelines
+- Embedded & IoT: Custom firmware, drone flight controllers, telemetry systems, hardware multiplexors
+- Web Development: Full-stack React, Next.js, Fastify — dashboards, SaaS, admin panels
+
+## Projects
+
+- Sortina: Logistics rate management platform (React, Fastify, Prisma, Docker) — production
+- Drone Control Center: Ground station with live telemetry and mission planning (Python, MAVLink) — active
+- China Business Tours: Platform connecting businesses with 258+ tech companies (Next.js, Supabase) — production
+- Video Multiplexor: Multi-channel analog video switching with serial control (C, STM32) — active
+
+## Contact
+
+- Email: hello@essentialhustle.dev
+- Telegram: https://t.me/essentialhustle
+- GitHub: https://github.com/Call-me-Boris-The-Razor
+
+## Links
+
+- Homepage: https://essentialhustle.dev
+- Sitemap: https://essentialhustle.dev/sitemap.xml
+- JSON API: https://essentialhustle.dev/api/site-summary
+- Full context: https://essentialhustle.dev/llms-full.txt

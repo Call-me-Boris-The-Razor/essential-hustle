@@ -6,7 +6,7 @@ import { SITE_CONFIG, CONTACT_TEXT } from "@/lib/site-config";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export const Contact = () => (
-  <section id="contact" className="relative py-32">
+  <section id="contact" aria-labelledby="contact-heading" className="relative py-32">
     <div className="mx-auto max-w-7xl px-6">
       <div className="relative overflow-hidden rounded-3xl border border-border bg-surface-1 px-8 py-20 text-center md:px-16 md:py-28">
         {/* Decorative gradient */}
@@ -29,7 +29,7 @@ export const Contact = () => (
             {CONTACT_TEXT.label}
           </span>
 
-          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-6xl">
+          <h2 id="contact-heading" className="mt-4 font-display text-4xl font-bold tracking-tight md:text-6xl">
             {CONTACT_TEXT.headline}
           </h2>
 
@@ -37,7 +37,7 @@ export const Contact = () => (
             {CONTACT_TEXT.description}
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <address className="mt-10 flex flex-col items-center justify-center gap-4 not-italic sm:flex-row">
             <MagneticButton
               href={`mailto:${SITE_CONFIG.email}`}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
@@ -53,7 +53,7 @@ export const Contact = () => (
               Telegram
               <ArrowUpRight size={16} />
             </MagneticButton>
-          </div>
+          </address>
         </motion.div>
       </div>
     </div>

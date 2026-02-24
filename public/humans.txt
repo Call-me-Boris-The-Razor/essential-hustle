@@ -1,0 +1,17 @@
+/* TEAM */
+Studio: Essential Hustle
+Site: https://essentialhustle.dev
+Contact: hello [at] essentialhustle.dev
+Location: Asia
+
+/* THANKS */
+Next.js: https://nextjs.org
+Tailwind CSS: https://tailwindcss.com
+Framer Motion: https://www.framer.com/motion
+Lucide Icons: https://lucide.dev
+Vercel: https://vercel.com
+
+/* SITE */
+Standards: HTML5, CSS3, ES2024
+Components: React 19, TypeScript 5
+Software: Next.js 16, Tailwind CSS 4

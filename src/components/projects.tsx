@@ -19,18 +19,19 @@ const ROW_VARIANTS = {
 };
 
 export const Projects = () => (
-  <section id="projects" className="relative py-32">
+  <section id="projects" aria-labelledby="projects-heading" className="relative py-32">
     <div className="mx-auto max-w-7xl px-6">
       <SectionHeading
+        id="projects-heading"
         label="Our work"
         title="Projects"
         description="Real systems running in production. Not demos, not prototypes."
       />
 
       {/* Project list — editorial style, not card grid */}
-      <div className="space-y-0 divide-y divide-border">
+      <ol className="list-none space-y-0 divide-y divide-border">
         {PROJECTS.map((project, i) => (
-          <motion.div
+          <motion.li
             key={project.id}
             custom={i}
             variants={ROW_VARIANTS}
@@ -74,9 +75,9 @@ export const Projects = () => (
                 </span>
               ))}
             </div>
-          </motion.div>
+          </motion.li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 );

@@ -1,0 +1,98 @@
+# Essential Hustle — Full Context for LLMs
+
+> Engineering studio based in Asia. We build infrastructure, integrate AI,
+> ship embedded firmware, and develop web applications.
+> Every project runs in production.
+
+---
+
+## About
+
+Essential Hustle is a small engineering team that ships across the entire
+technology stack — from embedded C firmware to React dashboards, from Docker
+infrastructure to custom AI deployments.
+
+We operate across 4 countries with 10+ production systems running at 99.9% uptime.
+24/7 monitoring on all deployed infrastructure.
+
+---
+
+## Services
+
+### DevOps & Cloud
+Docker orchestration, CI/CD pipelines, server hardening, monitoring.
+Production-grade infrastructure that scales.
+Technologies: Docker, CI/CD, Nginx, Linux, Monitoring
+
+### AI Integration
+On-premise LLM deployment, speech synthesis, whisper transcription,
+custom AI pipelines on your own hardware.
+Technologies: LLM, TTS, STT, Ollama, GPU Inference
+
+### Embedded & IoT
+Custom firmware, drone flight controllers, telemetry systems,
+hardware multiplexors. From PCB to cloud.
+Technologies: C/C++, MAVLink, STM32, Custom Protocols
+
+### Web Development
+Full-stack applications with React, Next.js, Fastify.
+Real-time dashboards, SaaS platforms, admin panels.
+Technologies: React, Next.js, TypeScript, PostgreSQL
+
+---
+
+## Projects
+
+### Sortina (production)
+Logistics rate management platform with multi-role access and real-time data.
+Built with React, Fastify, Prisma, Docker.
+
+### Drone Control Center (active)
+Ground station for drone fleet management with live telemetry and mission planning.
+Built with Python, MAVLink, WebSocket, Flask.
+
+### China Business Tours (production)
+Platform connecting businesses with 258+ tech companies for organized factory visits.
+Built with Next.js, Supabase, TypeScript.
+
+### Video Multiplexor (active)
+Custom hardware and firmware for multi-channel analog video switching
+with serial control.
+Built with C, STM32, CRSF, Custom PCB.
+
+---
+
+## Technical Stack
+
+This website is built with:
+- Next.js 16 (App Router) — framework
+- React 19 — UI library
+- TypeScript 5 — type safety
+- Tailwind CSS 4 — styling via CSS custom properties
+- Framer Motion 12 — scroll animations with reduced-motion support
+- Custom SVG icons — hand-drawn on 24x24 grid, no icon libraries
+
+Design system:
+- Dark theme: #09090b background, #f97316 orange accent, #06b6d4 cyan accent
+- Typography: Space Grotesk (headlines), Inter (body), JetBrains Mono (code/tags)
+- All content centralized in a single configuration file
+
+---
+
+## Contact
+
+- Website: https://essentialhustle.dev
+- Email: hello@essentialhustle.dev
+- Telegram: https://t.me/essentialhustle
+- GitHub: https://github.com/Call-me-Boris-The-Razor
+
+---
+
+## Machine-Readable Resources
+
+- Sitemap: https://essentialhustle.dev/sitemap.xml
+- robots.txt: https://essentialhustle.dev/robots.txt
+- JSON API: https://essentialhustle.dev/api/site-summary
+- Structured data: JSON-LD schema.org in page head
+- Security: https://essentialhustle.dev/.well-known/security.txt
+- Humans: https://essentialhustle.dev/humans.txt

@@ -14,12 +14,12 @@ const STAT_VARIANTS = {
 };
 
 export const About = () => (
-  <section id="about" className="relative py-32">
+  <section id="about" aria-labelledby="about-heading" className="relative py-32">
     <div className="mx-auto max-w-7xl px-6">
       <div className="grid gap-16 md:grid-cols-2">
         {/* Left — text */}
         <div>
-          <SectionHeading label="Who we are" title={ABOUT_TEXT.headline} />
+          <SectionHeading id="about-heading" label="Who we are" title={ABOUT_TEXT.headline} />
           <div className="space-y-4">
             {ABOUT_TEXT.paragraphs.map((p, i) => (
               <p key={i} className="text-lg leading-relaxed text-text-secondary">

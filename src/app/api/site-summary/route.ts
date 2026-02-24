@@ -4,6 +4,8 @@ import { SITE_CONFIG, SERVICES, PROJECTS } from "@/lib/site-config";
 // Default locale messages for API response
 import messages from "../../../../messages/en.json";
 
+// Public read-only API — CORS wildcard is intentional.
+// This endpoint exposes only non-sensitive marketing data (services, projects, tagline).
 const CACHE_HEADERS = {
   "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
   "Access-Control-Allow-Origin": "*",

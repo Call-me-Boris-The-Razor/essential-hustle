@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2026-02-25
+
+### Security
+- **CSP header** — added Content-Security-Policy with directives for script-src, style-src, img-src, connect-src, object-src, base-uri, form-action, frame-ancestors. Dynamically includes Umami analytics origin. (#104)
+- **Rate limiter hardened** — now uses IP from `x-forwarded-for`/`x-real-ip` headers instead of email (trivially bypassed). Added periodic cleanup + 10K entry cap to prevent memory leak. (#105)
+- **PII protection** — `console.log` no longer dumps user name/email/message to server logs when webhook is not configured. (#106)
+- **npm audit clean** — resolved 8 high severity `minimatch` ReDoS vulnerabilities via `overrides` in package.json. (#102)
+
+### Changed
+- `.env.example` updated with accurate env var documentation (#103)
+- CORS wildcard on `/api/site-summary` documented as intentional (#107)
+
 ## [0.7.0] - 2026-02-25
 
 ### Fixed

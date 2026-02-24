@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { contactSchema, type ContactFormData } from "@/lib/contact-schema";
 
 type ActionResult = {
@@ -9,13 +10,31 @@ type ActionResult = {
 
 const WEBHOOK_URL = process.env.CONTACT_WEBHOOK_URL;
 const RATE_LIMIT_MS = 60_000;
+const MAX_ENTRIES = 10_000;
 const submissions = new Map<string, number>();
 
-/** Simple in-memory rate limiter per IP (resets on server restart) */
-const isRateLimited = (ip: string): boolean => {
-  const last = submissions.get(ip);
+/** Purge expired entries to prevent unbounded memory growth */
+const purgeExpired = (): void => {
+  const now = Date.now();
+  for (const [key, ts] of submissions) {
+    if (now - ts >= RATE_LIMIT_MS) submissions.delete(key);
+  }
+};
+
+/** Get client identifier from request headers (IP) with email fallback */
+const getClientId = async (email: string): Promise<string> => {
+  const h = await headers();
+  return h.get("x-forwarded-for")?.split(",")[0]?.trim()
+    ?? h.get("x-real-ip")
+    ?? email;
+};
+
+/** In-memory rate limiter per IP (resets on server restart) */
+const isRateLimited = (clientId: string): boolean => {
+  if (submissions.size > MAX_ENTRIES) purgeExpired();
+  const last = submissions.get(clientId);
   if (last && Date.now() - last < RATE_LIMIT_MS) return true;
-  submissions.set(ip, Date.now());
+  submissions.set(clientId, Date.now());
   return false;
 };
 
@@ -26,8 +45,9 @@ export async function submitContact(data: ContactFormData): Promise<ActionResult
     return { success: false, error: "errorInvalid" };
   }
 
-  // Rate limit (use email as identifier since headers aren't available in Server Actions)
-  if (isRateLimited(parsed.data.email)) {
+  // Rate limit by IP (with email fallback)
+  const clientId = await getClientId(parsed.data.email);
+  if (isRateLimited(clientId)) {
     return { success: false, error: "errorRateLimit" };
   }
 
@@ -52,8 +72,8 @@ export async function submitContact(data: ContactFormData): Promise<ActionResult
       return { success: false, error: "errorSendFailed" };
     }
   } else {
-    // Fallback: log to console (development)
-    console.log("[contact] Form submission:", parsed.data);
+    // Fallback: confirm receipt without logging PII
+    console.log("[contact] Form submission received (no webhook configured)");
   }
 
   return { success: true };

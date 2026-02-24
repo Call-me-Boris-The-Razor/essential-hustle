@@ -33,7 +33,7 @@ export const MagneticButton = ({
   const props = {
     onMouseMove: handleMouseMove,
     onMouseLeave: handleMouseLeave,
-    className: `inline-flex items-center justify-center transition-transform duration-200 ${className}`,
+    className: `inline-flex items-center justify-center transition-transform duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${className}`,
   };
 
   if (href) {
@@ -45,7 +45,7 @@ export const MagneticButton = ({
   }
 
   return (
-    <button ref={ref as React.RefObject<HTMLButtonElement>} {...props}>
+    <button type="button" ref={ref as React.RefObject<HTMLButtonElement>} {...props}>
       {children}
     </button>
   );

@@ -17,7 +17,7 @@ const FADE_UP = {
 
 export const Hero = () => (
   <section className="relative flex min-h-screen items-center overflow-hidden">
-    <DotGrid className="opacity-8" />
+    <DotGrid opacity={0.08} />
 
     {/* Gradient orb — decorative */}
     <div

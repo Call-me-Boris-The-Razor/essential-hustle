@@ -32,6 +32,13 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
     siteName: SITE_CONFIG.name,
     type: "website",
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: SITE_CONFIG.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
+    description: SITE_CONFIG.description,
+    images: ["/og-image.svg"],
   },
 };
 

@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] - 2026-02-25
+
+### Fixed
+- **Critical: ThemeToggle SSR hang** — `React.use()` with a never-resolving Promise on the server caused every page to hang for ~87s. Replaced with standard `useEffect + useState` mount detection. (#86)
+
 ## [0.6.0] - 2026-02-25
 
 ### Added

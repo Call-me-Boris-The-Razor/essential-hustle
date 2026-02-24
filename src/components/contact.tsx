@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, ArrowUpRight } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/site-config";
+import { SITE_CONFIG, CONTACT_TEXT } from "@/lib/site-config";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export const Contact = () => (
@@ -26,16 +26,15 @@ export const Contact = () => (
           className="relative"
         >
           <span className="font-mono text-sm tracking-widest uppercase text-accent">
-            Let&apos;s talk
+            {CONTACT_TEXT.label}
           </span>
 
           <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-6xl">
-            Have a project in mind?
+            {CONTACT_TEXT.headline}
           </h2>
 
           <p className="mx-auto mt-6 max-w-lg text-lg text-text-secondary">
-            We&apos;re always looking for interesting engineering challenges.
-            Drop us a line and let&apos;s build something great.
+            {CONTACT_TEXT.description}
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

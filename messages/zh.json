@@ -107,7 +107,16 @@
       "success": "消息已发送！",
       "successSub": "我们会尽快回复您。",
       "sendAnother": "再发一条",
-      "errorGeneric": "出了点问题"
+      "errorGeneric": "出了点问题",
+      "errorInvalid": "输入无效",
+      "errorRateLimit": "请稍后再提交",
+      "errorSendFailed": "发送失败，请重试。",
+      "nameMin": "姓名至少需要2个字符",
+      "nameMax": "姓名不能超过100个字符",
+      "emailInvalid": "请输入有效的邮箱地址",
+      "emailMax": "邮箱不能超过254个字符",
+      "messageMin": "留言至少需要10个字符",
+      "messageMax": "留言不能超过2000个字符"
     }
   },
   "blog": {
@@ -122,7 +131,9 @@
     "rights": "版权所有。"
   },
   "common": {
-    "toggleMenu": "切换菜单"
+    "toggleMenu": "菜单",
+    "switchToLight": "切换到浅色主题",
+    "switchToDark": "切换到深色主题"
   },
   "notFound": {
     "title": "页面未找到",

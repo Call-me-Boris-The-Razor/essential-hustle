@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { SITE_CONFIG, SERVICES } from "@/lib/site-config";
+import { THEME_COLORS } from "@/lib/theme";
 import messages from "../../messages/en.json";
 
 export const alt = SITE_CONFIG.name;
@@ -17,7 +18,7 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#09090b",
+          backgroundColor: THEME_COLORS.bg,
           fontFamily: "system-ui, sans-serif",
           position: "relative",
           overflow: "hidden",
@@ -32,7 +33,7 @@ export default function OgImage() {
             width: "500px",
             height: "500px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)",
+            background: `radial-gradient(circle, ${THEME_COLORS.accent}1f 0%, transparent 70%)`,
           }}
         />
 
@@ -50,14 +51,14 @@ export default function OgImage() {
               width: "10px",
               height: "10px",
               borderRadius: "50%",
-              backgroundColor: "#f97316",
+              backgroundColor: THEME_COLORS.accent,
             }}
           />
           <span
             style={{
               fontSize: "14px",
               letterSpacing: "3px",
-              color: "#a1a1aa",
+              color: THEME_COLORS.textSecondary,
               fontFamily: "monospace",
             }}
           >
@@ -71,7 +72,7 @@ export default function OgImage() {
             style={{
               fontSize: "72px",
               fontWeight: 800,
-              color: "#fafafa",
+              color: THEME_COLORS.textPrimary,
               lineHeight: 1.1,
             }}
           >
@@ -81,7 +82,7 @@ export default function OgImage() {
             style={{
               fontSize: "72px",
               fontWeight: 800,
-              color: "#f97316",
+              color: THEME_COLORS.accent,
             }}
           >
             .
@@ -92,7 +93,7 @@ export default function OgImage() {
         <span
           style={{
             fontSize: "24px",
-            color: "#a1a1aa",
+            color: THEME_COLORS.textSecondary,
             marginTop: "16px",
           }}
         >
@@ -113,10 +114,10 @@ export default function OgImage() {
               style={{
                 padding: "8px 20px",
                 borderRadius: "20px",
-                backgroundColor: "#111113",
-                border: "1px solid #27272a",
+                backgroundColor: THEME_COLORS.surface1,
+                border: `1px solid ${THEME_COLORS.border}`,
                 fontSize: "13px",
-                color: "#a1a1aa",
+                color: THEME_COLORS.textSecondary,
                 fontFamily: "monospace",
               }}
             >
@@ -135,7 +136,7 @@ export default function OgImage() {
             left: "80px",
             fontSize: "14px",
             letterSpacing: "2px",
-            color: "#71717a",
+            color: THEME_COLORS.textMuted,
             fontFamily: "monospace",
           }}
         >

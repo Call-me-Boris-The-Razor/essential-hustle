@@ -34,6 +34,8 @@ export const PROJECTS = [
   { id: "mux", title: "Video Multiplexor", tags: ["C", "STM32", "CRSF", "Custom PCB"], status: "active" as const },
 ] as const;
 
+export const TESTIMONIAL_COUNT = 3;
+
 export const ABOUT_STATS = [
   { value: "10+", key: "stat1" },
   { value: "4", key: "stat2" },

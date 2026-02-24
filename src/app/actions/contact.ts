@@ -23,13 +23,12 @@ export async function submitContact(data: ContactFormData): Promise<ActionResult
   // Validate
   const parsed = contactSchema.safeParse(data);
   if (!parsed.success) {
-    const firstError = parsed.error.issues[0]?.message ?? "Invalid input";
-    return { success: false, error: firstError };
+    return { success: false, error: "errorInvalid" };
   }
 
   // Rate limit (use email as identifier since headers aren't available in Server Actions)
   if (isRateLimited(parsed.data.email)) {
-    return { success: false, error: "Please wait before submitting again" };
+    return { success: false, error: "errorRateLimit" };
   }
 
   // Send to webhook if configured
@@ -46,11 +45,11 @@ export async function submitContact(data: ContactFormData): Promise<ActionResult
 
       if (!res.ok) {
         console.error("[contact] Webhook failed:", res.status);
-        return { success: false, error: "Failed to send message. Please try again." };
+        return { success: false, error: "errorSendFailed" };
       }
     } catch (err) {
       console.error("[contact] Webhook error:", err);
-      return { success: false, error: "Failed to send message. Please try again." };
+      return { success: false, error: "errorSendFailed" };
     }
   } else {
     // Fallback: log to console (development)

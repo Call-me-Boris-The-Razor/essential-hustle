@@ -26,9 +26,15 @@ export const getSlugs = (): string[] => {
     .map((f) => f.replace(/\.mdx$/, ""));
 };
 
+/** Sanitize slug to prevent path traversal */
+const sanitizeSlug = (slug: string): string =>
+  slug.replace(/[^a-z0-9-]/gi, "");
+
 /** Get a single blog post by slug */
 export const getPost = (slug: string): BlogPost | null => {
-  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
+  const safe = sanitizeSlug(slug);
+  if (!safe) return null;
+  const filePath = path.join(CONTENT_DIR, `${safe}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, "utf-8");

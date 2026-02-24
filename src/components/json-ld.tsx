@@ -50,9 +50,9 @@ export const JsonLd = () => (
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
     />
-    {serviceSchemas.map((schema, i) => (
+    {serviceSchemas.map((schema) => (
       <script
-        key={i}
+        key={schema.name}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />

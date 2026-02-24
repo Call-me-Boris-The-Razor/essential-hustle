@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { TESTIMONIAL_COUNT } from "@/lib/site-config";
 import { staggerVariants } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const CARD_VARIANTS = staggerVariants({ y: 30 }, { stagger: 0.12 });
-const TESTIMONIAL_COUNT = 3;
 
 export const Testimonials = () => {
   const t = useTranslations("testimonials");

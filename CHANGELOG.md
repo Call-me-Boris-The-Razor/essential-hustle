@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-02-25
+
+### Fixed
+- **P0: Header, Footer, NotFound** — all navigation now uses locale-aware `Link` and `usePathname` from `@/i18n/routing` instead of `next/link` / `next/navigation`. Blog link, logo, and back-home link now respect active locale. (#88, #89, #90, #93)
+- **P0: Contact form validation** — Zod error messages now translated via `useTranslations` instead of hardcoded English. Server action returns error keys instead of strings. (#91, #92)
+- **P1: Path traversal** — `blog.ts` `getPost()` now sanitizes slug to `[a-z0-9-]` only. (#94)
+- **P1: DRY** — extracted `INPUT_CLASS` constant in `contact-form.tsx`, eliminating 3x duplicated className. (#95)
+- **P1: Accessibility** — `ThemeToggle` aria-label now translated for all locales. (#96)
+- **P1: Theme sync** — OG image uses shared `THEME_COLORS` from `src/lib/theme.ts` instead of 10+ hardcoded hex values. (#97)
+
+### Changed
+- `TESTIMONIAL_COUNT` moved to `site-config.ts` — single source of truth. (#98)
+- RSS feed `<language>en</language>` documented as intentional canonical choice. (#99)
+- `json-ld.tsx` service schemas use `schema.name` as React key instead of array index. (#100)
+
+### Added
+- `src/lib/theme.ts` — shared dark theme color constants for non-CSS contexts
+- 10 new translation keys per locale (validation errors, theme toggle labels) — 84 keys total
+
 ## [0.6.1] - 2026-02-25
 
 ### Fixed

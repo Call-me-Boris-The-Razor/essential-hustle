@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/site-config";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const STATUS_STYLES = {
@@ -14,7 +15,7 @@ const ROW_VARIANTS = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: 0.08 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { delay: 0.08 * i, duration: 0.5, ease: EASE_OUT_EXPO },
   }),
 };
 

@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/site-config";
+import { SITE_CONFIG, HERO_TEXT } from "@/lib/site-config";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { DotGrid } from "@/components/ui/dot-grid";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
@@ -11,7 +12,7 @@ const FADE_UP = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.15 * i, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { delay: 0.15 * i, duration: 0.6, ease: EASE_OUT_EXPO },
   }),
 };
 
@@ -41,7 +42,7 @@ export const Hero = () => (
         >
           <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
           <span className="font-mono text-xs tracking-wider text-text-secondary">
-            ENGINEERING STUDIO
+            {HERO_TEXT.badge.toUpperCase()}
           </span>
         </motion.div>
 
@@ -53,9 +54,9 @@ export const Hero = () => (
           animate="visible"
           className="font-display text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl"
         >
-          We build what
+          {HERO_TEXT.headline[0]}
           <br />
-          <span className="text-accent">others outsource</span>
+          <span className="text-accent">{HERO_TEXT.headline[1]}</span>
           <span className="text-text-muted">.</span>
         </motion.h1>
 
@@ -82,13 +83,13 @@ export const Hero = () => (
             href="#services"
             className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
           >
-            Explore Services
+            {HERO_TEXT.cta.primary}
           </MagneticButton>
           <MagneticButton
             href="#projects"
             className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-1"
           >
-            View Projects
+            {HERO_TEXT.cta.secondary}
           </MagneticButton>
         </motion.div>
 
@@ -100,14 +101,14 @@ export const Hero = () => (
           className="mt-20 flex items-center gap-2 text-text-muted"
         >
           <ArrowDown size={16} className="animate-bounce" />
-          <span className="font-mono text-xs tracking-wider">SCROLL</span>
+          <span className="font-mono text-xs tracking-wider">{HERO_TEXT.scroll.toUpperCase()}</span>
         </motion.div>
       </div>
 
       {/* Side label — decorative, desktop only */}
       <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 -rotate-90 md:block">
         <span className="font-mono text-xs tracking-[0.3em] text-text-muted/50">
-          EST. 2024 — {SITE_CONFIG.domain}
+          EST. {HERO_TEXT.established} — {SITE_CONFIG.domain}
         </span>
       </div>
     </div>

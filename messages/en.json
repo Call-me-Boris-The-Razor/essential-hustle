@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "tagline": "Engineering that moves fast",
+    "description": "We build infrastructure, integrate AI, and ship embedded systems. From cloud to silicon — we deliver."
+  },
+  "nav": {
+    "services": "Services",
+    "projects": "Projects",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Engineering Studio",
+    "headline1": "We build what",
+    "headline2": "others outsource",
+    "ctaPrimary": "Explore Services",
+    "ctaSecondary": "View Projects",
+    "ctaContact": "Get in Touch",
+    "scroll": "Scroll"
+  },
+  "services": {
+    "label": "What we do",
+    "title": "Services",
+    "description": "End-to-end engineering across the full technology stack.",
+    "devops": {
+      "title": "DevOps & Cloud",
+      "description": "Docker orchestration, CI/CD pipelines, server hardening, monitoring. Production-grade infrastructure that scales."
+    },
+    "ai": {
+      "title": "AI Integration",
+      "description": "On-premise LLM deployment, speech synthesis, whisper transcription, custom AI pipelines on your own hardware."
+    },
+    "embedded": {
+      "title": "Embedded & IoT",
+      "description": "Custom firmware, drone flight controllers, telemetry systems, hardware multiplexors. From PCB to cloud."
+    },
+    "web": {
+      "title": "Web Development",
+      "description": "Full-stack applications with React, Next.js, Fastify. Real-time dashboards, SaaS platforms, admin panels."
+    }
+  },
+  "projects": {
+    "label": "Our work",
+    "statusProduction": "Production",
+    "statusActive": "Active",
+    "title": "Projects",
+    "description": "Real systems running in production. Not demos, not prototypes.",
+    "sortina": {
+      "description": "Logistics rate management platform with multi-role access and real-time data."
+    },
+    "dcc": {
+      "description": "Ground station for drone fleet management with live telemetry and mission planning."
+    },
+    "china-tours": {
+      "description": "Platform connecting businesses with 258+ tech companies for organized factory visits."
+    },
+    "mux": {
+      "description": "Custom hardware & firmware for multi-channel analog video switching with serial control."
+    }
+  },
+  "about": {
+    "label": "Who we are",
+    "headline": "Full-stack. From silicon to cloud.",
+    "p1": "We're a small engineering team based in Asia that ships across the entire technology stack — from embedded C firmware to React dashboards, from Docker infrastructure to custom AI deployments.",
+    "p2": "Every project we take on runs in production. No prototypes gathering dust. We build things that work, harden them, and keep them running.",
+    "stat1": "Production Systems",
+    "stat2": "Countries Served",
+    "stat3": "Uptime SLA",
+    "stat4": "Monitoring"
+  },
+  "testimonials": {
+    "label": "What they say",
+    "title": "Client Feedback",
+    "items": [
+      {
+        "quote": "They rebuilt our entire monitoring stack in two weeks. Zero downtime during migration.",
+        "author": "CTO",
+        "company": "Logistics SaaS"
+      },
+      {
+        "quote": "The only team that understood both the firmware and the cloud side of our IoT project.",
+        "author": "Founder",
+        "company": "Smart Agriculture Startup"
+      },
+      {
+        "quote": "Production-ready from day one. No hand-holding required after handoff.",
+        "author": "VP Engineering",
+        "company": "FinTech Platform"
+      }
+    ]
+  },
+  "contact": {
+    "label": "Let's talk",
+    "headline": "Have a project in mind?",
+    "description": "We're always looking for interesting engineering challenges. Drop us a line and let's build something great.",
+    "telegram": "Telegram",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@company.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent!",
+      "successSub": "We'll get back to you soon.",
+      "sendAnother": "Send another message",
+      "errorGeneric": "Something went wrong"
+    }
+  },
+  "blog": {
+    "title": "Engineering Notes",
+    "description": "Technical deep-dives, infrastructure war stories, and lessons from production.",
+    "label": "Blog",
+    "noPosts": "No posts yet. Check back soon.",
+    "back": "Back to blog",
+    "backAll": "Back to all posts"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "toggleMenu": "Toggle menu"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "back": "Go back home"
+  },
+  "skipToContent": "Skip to content"
+}

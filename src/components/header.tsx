@@ -5,20 +5,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SITE_CONFIG, NAV_LINKS, HERO_TEXT } from "@/lib/site-config";
+import { useTranslations } from "next-intl";
+import { SITE_CONFIG, NAV_LINKS } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/use-active-section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 
 const isAnchor = (href: string) => href.startsWith("#");
 
-const navLinkClass = (href: string, active: boolean, size: "sm" | "base" = "sm") =>
-  `text-${size} transition-colors hover:text-text-primary ${
+const SIZE_CLASS = { sm: "text-sm", base: "text-base" } as const;
+
+const navLinkClass = (active: boolean, size: "sm" | "base" = "sm") =>
+  `${SIZE_CLASS[size]} transition-colors hover:text-text-primary ${
     active ? "text-accent" : "text-text-secondary"
   }`;
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("nav");
+  const tHero = useTranslations("hero");
+  const tCommon = useTranslations("common");
   const sectionHrefs = useMemo(() => NAV_LINKS.filter((l) => isAnchor(l.href)).map((l) => l.href), []);
   const activeSection = useActiveSection(sectionHrefs);
 
@@ -55,27 +62,28 @@ export const Header = () => {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "true" : undefined}
-                className={navLinkClass(link.href, isActive(link.href))}
+                className={navLinkClass(isActive(link.href))}
               >
-                {link.label}
+                {t(link.key)}
               </a>
             ) : (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "true" : undefined}
-                className={navLinkClass(link.href, isActive(link.href))}
+                className={navLinkClass(isActive(link.href))}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ),
           )}
+          <LanguageSwitcher />
           <ThemeToggle />
           <a
             href={`mailto:${SITE_CONFIG.email}`}
             className="rounded-full bg-accent px-5 py-2 text-sm font-medium text-bg transition-colors hover:bg-accent-hover"
           >
-            {HERO_TEXT.ctaContact}
+            {tHero("ctaContact")}
           </a>
         </div>
 
@@ -86,7 +94,7 @@ export const Header = () => {
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             className="text-text-secondary"
-            aria-label="Toggle menu"
+            aria-label={tCommon("toggleMenu")}
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -111,9 +119,9 @@ export const Header = () => {
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     aria-current={isActive(link.href) ? "true" : undefined}
-                    className={navLinkClass(link.href, isActive(link.href), "base")}
+                    className={navLinkClass(isActive(link.href), "base")}
                   >
-                    {link.label}
+                    {t(link.key)}
                   </a>
                 ) : (
                   <Link
@@ -121,9 +129,9 @@ export const Header = () => {
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     aria-current={isActive(link.href) ? "true" : undefined}
-                    className={navLinkClass(link.href, isActive(link.href), "base")}
+                    className={navLinkClass(isActive(link.href), "base")}
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 ),
               )}
@@ -131,7 +139,7 @@ export const Header = () => {
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-bg"
               >
-                {HERO_TEXT.ctaContact}
+                {tHero("ctaContact")}
               </a>
             </div>
           </motion.div>

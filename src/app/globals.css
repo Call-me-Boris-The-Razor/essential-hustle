@@ -49,9 +49,9 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-2: var(--accent-2);
   --color-accent-2-hover: var(--accent-2-hover);
-  --font-display: var(--font-space-grotesk);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-display: "Space Grotesk Variable", system-ui, sans-serif;
+  --font-body: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
 }
 
 body {

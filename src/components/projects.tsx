@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 import { PROJECTS } from "@/lib/site-config";
 import { SectionHeading } from "@/components/ui/section-heading";
 

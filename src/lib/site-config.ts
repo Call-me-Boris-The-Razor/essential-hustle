@@ -94,20 +94,3 @@ export const ABOUT_TEXT = {
     { value: "24/7", label: "Monitoring" },
   ],
 } as const;
-
-// Design tokens — referenced by Tailwind theme in globals.css
-export const COLORS = {
-  background: "#09090b",
-  surface1: "#111113",
-  surface2: "#1a1a1e",
-  surface3: "#232328",
-  border: "#27272a",
-  borderLight: "#3f3f46",
-  textPrimary: "#fafafa",
-  textSecondary: "#a1a1aa",
-  textMuted: "#71717a",
-  accentPrimary: "#f97316",
-  accentPrimaryHover: "#fb923c",
-  accentSecondary: "#06b6d4",
-  accentSecondaryHover: "#22d3ee",
-} as const;

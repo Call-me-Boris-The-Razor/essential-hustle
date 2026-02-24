@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2025-02-25
+
+### Fixed
+- OG image: SVG → auto-generated PNG via opengraph-image.tsx (SVG unsupported by social platforms)
+- MagneticButton: external links now support target/rel (Telegram link was missing noopener)
+- useActiveSection: memoized sectionHrefs to prevent IntersectionObserver recreation every render
+- Mobile menu: added aria-expanded and Escape key handler
+- noscript fallback: replaced hardcoded text with site-config values
+
+### Changed
+- SERVICE_ICON_MAP: strict ServiceId typing — TypeScript errors if icon missing for a service
+- Hardcoded hero/header strings moved to HERO_TEXT in site-config
+- Animation easing extracted to shared EASE_OUT_EXPO constant (was duplicated in 5 files)
+- JSON-LD knowsAbout derived from SERVICES tags instead of hardcoded array
+- /api/site-summary: added Cache-Control + CORS headers
+- Security headers added via next.config.ts (X-Frame-Options, HSTS, CSP, Referrer-Policy)
+
 ## [0.3.0] - 2025-02-25
 
 ### Added

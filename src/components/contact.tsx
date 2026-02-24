@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG, CONTACT_TEXT } from "@/lib/site-config";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export const Contact = () => (
@@ -22,7 +23,7 @@ export const Contact = () => (
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           className="relative"
         >
           <span className="font-mono text-sm tracking-widest uppercase text-accent">
@@ -48,6 +49,8 @@ export const Contact = () => (
 
             <MagneticButton
               href={SITE_CONFIG.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-4 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-2"
             >
               Telegram

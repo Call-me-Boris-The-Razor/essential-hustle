@@ -7,6 +7,12 @@ import {
   CONTACT_TEXT,
 } from "@/lib/site-config";
 
+const CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET",
+};
+
 export const GET = () =>
   NextResponse.json({
     name: SITE_CONFIG.name,
@@ -41,4 +47,4 @@ export const GET = () =>
       headline: CONTACT_TEXT.headline,
       description: CONTACT_TEXT.description,
     },
-  });
+  }, { headers: CACHE_HEADERS });

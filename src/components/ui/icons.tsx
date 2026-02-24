@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import type { SERVICES } from "@/lib/site-config";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -57,8 +58,10 @@ export const TelegramIcon = (props: IconProps) => (
   </svg>
 );
 
-/** Map service IDs to icon components */
-export const SERVICE_ICON_MAP: Record<string, React.ReactNode> = {
+type ServiceId = (typeof SERVICES)[number]["id"];
+
+/** Map service IDs to icon components — type-safe, errors if a service is missing */
+export const SERVICE_ICON_MAP: Record<ServiceId, React.ReactNode> = {
   devops: <DevOpsIcon />,
   ai: <AiIcon />,
   embedded: <EmbeddedIcon />,

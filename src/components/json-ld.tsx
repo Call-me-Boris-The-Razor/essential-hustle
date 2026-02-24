@@ -11,19 +11,7 @@ const organizationSchema = {
   description: SITE_CONFIG.description,
   email: SITE_CONFIG.email,
   sameAs: [SITE_CONFIG.github, SITE_CONFIG.telegram],
-  knowsAbout: [
-    "DevOps",
-    "Docker",
-    "CI/CD",
-    "AI Integration",
-    "LLM Deployment",
-    "Embedded Systems",
-    "IoT",
-    "Web Development",
-    "React",
-    "Next.js",
-    "TypeScript",
-  ],
+  knowsAbout: [...new Set(SERVICES.flatMap((s) => [...s.tags]))],
 };
 
 const websiteSchema = {

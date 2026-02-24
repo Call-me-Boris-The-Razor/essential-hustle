@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SERVICES } from "@/lib/site-config";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SERVICE_ICON_MAP } from "@/components/ui/icons";
 
@@ -10,7 +11,7 @@ const CARD_VARIANTS = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.1 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { delay: 0.1 * i, duration: 0.5, ease: EASE_OUT_EXPO },
   }),
 };
 

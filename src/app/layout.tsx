@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import { SITE_CONFIG } from "@/lib/site-config";
+import { SITE_CONFIG, SERVICES } from "@/lib/site-config";
 import { Providers } from "@/components/providers";
 import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
@@ -33,13 +33,11 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
     siteName: SITE_CONFIG.name,
     type: "website",
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: SITE_CONFIG.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
     description: SITE_CONFIG.description,
-    images: ["/og-image.svg"],
   },
   alternates: {
     canonical: `https://${SITE_CONFIG.domain}`,
@@ -69,11 +67,11 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} grain antialiased`}
       >
         <noscript>
-          <div style={{ padding: "2rem", color: "#fafafa", fontFamily: "system-ui" }}>
-            <h1>Essential Hustle — Engineering that moves fast</h1>
-            <p>We build infrastructure, integrate AI, ship embedded firmware, and develop web apps.</p>
-            <p>Services: DevOps &amp; Cloud, AI Integration, Embedded &amp; IoT, Web Development</p>
-            <p>Contact: hello@essentialhustle.dev</p>
+          <div style={{ padding: "2rem", color: "var(--text-primary)", fontFamily: "system-ui" }}>
+            <h1>{SITE_CONFIG.name} — {SITE_CONFIG.tagline}</h1>
+            <p>{SITE_CONFIG.description}</p>
+            <p>Services: {SERVICES.map((s) => s.title).join(", ")}</p>
+            <p>Contact: {SITE_CONFIG.email}</p>
           </div>
         </noscript>
         <Providers>{children}</Providers>

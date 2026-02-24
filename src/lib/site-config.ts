@@ -95,6 +95,15 @@ export const ABOUT_TEXT = {
   ],
 } as const;
 
+export const HERO_TEXT = {
+  badge: "Engineering Studio",
+  headline: ["We build what", "others outsource"],
+  cta: { primary: "Explore Services", secondary: "View Projects" },
+  ctaContact: "Get in Touch",
+  scroll: "Scroll",
+  established: 2024,
+} as const;
+
 export const CONTACT_TEXT = {
   label: "Let's talk",
   headline: "Have a project in mind?",

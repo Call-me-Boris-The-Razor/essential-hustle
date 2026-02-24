@@ -1,18 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { SITE_CONFIG, NAV_LINKS } from "@/lib/site-config";
+import { SITE_CONFIG, NAV_LINKS, HERO_TEXT } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/use-active-section";
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const activeSection = useActiveSection(NAV_LINKS.map((l) => l.href));
+  const sectionHrefs = useMemo(() => NAV_LINKS.map((l) => l.href), []);
+  const activeSection = useActiveSection(sectionHrefs);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    if (mobileOpen) document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [mobileOpen]);
 
   return (
@@ -42,7 +51,7 @@ export const Header = () => {
             href={`mailto:${SITE_CONFIG.email}`}
             className="rounded-full bg-accent px-5 py-2 text-sm font-medium text-bg transition-colors hover:bg-accent-hover"
           >
-            Get in Touch
+            {HERO_TEXT.ctaContact}
           </a>
         </div>
 
@@ -51,6 +60,7 @@ export const Header = () => {
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-text-secondary md:hidden"
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -83,7 +93,7 @@ export const Header = () => {
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-bg"
               >
-                Get in Touch
+                {HERO_TEXT.ctaContact}
               </a>
             </div>
           </motion.div>

@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-02-25
+
+### Added
+- llms.txt + llms-full.txt for LLM crawler discovery
+- JSON-LD structured data (Organization, WebSite, 4x Service schemas)
+- Explicit AI bot rules in robots.txt (GPTBot, ClaudeBot, PerplexityBot, etc.)
+- security.txt (RFC 9116) and humans.txt
+- /api/site-summary JSON endpoint with full site content
+- Meta tags for AI attribution (author, publisher, topic, canonical)
+- noscript fallback with plain text summary
+- link tags for humans.txt and JSON API discovery
+- Auto-versioning via GitHub Actions (release.yml)
+- AGENT.md (gitignored) with project rules for AI assistants
+
+### Changed
+- Semantic HTML: article elements for service cards, ol/li for projects, address for contact
+- All sections have aria-labelledby pointing to heading IDs
+- section-heading.tsx supports optional id prop
+- robots.ts refactored with AI_BOTS array
+
 ## [0.2.0] - 2025-02-25
 
 ### Added

@@ -5,6 +5,7 @@ import { Projects } from "@/components/projects";
 import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { SectionDivider } from "@/components/ui/section-divider";
 
 export default function Home() {
   return (
@@ -12,9 +13,13 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <SectionDivider />
         <Services />
+        <SectionDivider />
         <Projects />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Contact />
       </main>
       <Footer />

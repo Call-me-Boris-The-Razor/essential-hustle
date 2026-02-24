@@ -60,7 +60,7 @@ html {
 
 /* Selection color */
 ::selection {
-  background: #f9731644;
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
   color: var(--text-primary);
 }
 

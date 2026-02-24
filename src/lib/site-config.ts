@@ -19,6 +19,12 @@ export const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
+export const SERVICES_SECTION = {
+  label: "What we do",
+  title: "Services",
+  description: "End-to-end engineering across the full technology stack.",
+} as const;
+
 export const SERVICES = [
   {
     id: "devops",
@@ -50,6 +56,12 @@ export const SERVICES = [
   },
 ] as const;
 
+export const PROJECTS_SECTION = {
+  label: "Our work",
+  title: "Projects",
+  description: "Real systems running in production. Not demos, not prototypes.",
+} as const;
+
 export const PROJECTS = [
   {
     id: "sortina",
@@ -80,6 +92,10 @@ export const PROJECTS = [
     status: "active" as const,
   },
 ] as const;
+
+export const ABOUT_SECTION = {
+  label: "Who we are",
+} as const;
 
 export const ABOUT_TEXT = {
   headline: "Full-stack. From silicon to cloud.",

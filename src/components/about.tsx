@@ -1,18 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ABOUT_TEXT } from "@/lib/site-config";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import { ABOUT_TEXT, ABOUT_SECTION } from "@/lib/site-config";
+import { staggerVariants } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const STAT_VARIANTS = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { delay: 0.1 * i, duration: 0.4, ease: EASE_OUT_EXPO },
-  }),
-};
+const STAT_VARIANTS = staggerVariants({ scale: 0.8 }, { duration: 0.4 });
 
 export const About = () => (
   <section id="about" aria-labelledby="about-heading" className="relative py-32">
@@ -20,7 +13,7 @@ export const About = () => (
       <div className="grid gap-16 md:grid-cols-2">
         {/* Left — text */}
         <div>
-          <SectionHeading id="about-heading" label="Who we are" title={ABOUT_TEXT.headline} />
+          <SectionHeading id="about-heading" label={ABOUT_SECTION.label} title={ABOUT_TEXT.headline} />
           <div className="space-y-4">
             {ABOUT_TEXT.paragraphs.map((p, i) => (
               <p key={i} className="text-lg leading-relaxed text-text-secondary">

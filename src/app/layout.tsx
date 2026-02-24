@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   other: {
     author: SITE_CONFIG.name,
     publisher: SITE_CONFIG.name,
-    topic: "Engineering Services, DevOps, AI, Embedded Systems, Web Development",
+    topic: SERVICES.map((s) => s.title).join(", "),
     classification: "Technology Services",
     category: "Technology",
   },

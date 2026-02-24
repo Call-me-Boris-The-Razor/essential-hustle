@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-02-25
+
+### Added
+- **Blog** with MDX support (`/blog`, `/blog/[slug]`)
+  - File-based content engine (gray-matter + next-mdx-remote + rehype-pretty-code)
+  - Custom MDX components (typography, code blocks, external links)
+  - RSS feed at `/feed.xml`
+  - JSON-LD BlogPosting schema per post
+  - Sitemap updated with blog index + all posts
+  - 2 sample posts: Ollama on consumer GPUs, Docker Compose patterns
+- **Contact form** with Zod validation and Server Action
+  - Name, email, message fields with field-level errors
+  - In-memory rate limiting (1/min per email)
+  - Configurable webhook via `CONTACT_WEBHOOK_URL` env var
+- **Testimonials** section with quote cards and stagger animation
+- Blog link in navigation (next/link for client-side routing)
+- RSS `<link>` tag in document head
+
+### Changed
+- Header handles both anchor (`#`) and page (`/`) links
+- `useActiveSection` filters only anchor hrefs
+- Dependencies: gray-matter, next-mdx-remote, rehype-pretty-code, shiki, reading-time, zod
+
 ## [0.4.0] - 2025-02-25
 
 ### Added

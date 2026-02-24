@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" fill="none">
+  <defs>
+    <pattern id="fdots" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="0.5" fill="#3f3f46" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <!-- card 1: config -->
+  <g transform="translate(0, 0)">
+    <rect width="440" height="100" rx="10" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+    <rect width="440" height="100" rx="10" fill="url(#fdots)"/>
+    <g transform="translate(20, 20)" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="4"/>
+      <path d="M9 9h6M9 13h4M9 17h2"/>
+    </g>
+    <text x="56" y="38" font-family="monospace" font-size="12" letter-spacing="2" fill="#f97316">ONE CONFIG</text>
+    <text x="20" y="62" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">All text, links, projects, stats live in</text>
+    <text x="20" y="80" font-family="monospace" font-size="11" fill="#71717a">site-config.ts</text>
+    <text x="107" y="80" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">— change once, updates everywhere</text>
+  </g>
+  <!-- card 2: hand-drawn icons -->
+  <g transform="translate(460, 0)">
+    <rect width="440" height="100" rx="10" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+    <rect width="440" height="100" rx="10" fill="url(#fdots)"/>
+    <g transform="translate(20, 20)" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" fill="none">
+      <rect x="5" y="5" width="14" height="14" rx="2"/>
+      <rect x="9" y="9" width="6" height="6" rx="1"/>
+      <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>
+    </g>
+    <text x="56" y="38" font-family="monospace" font-size="12" letter-spacing="2" fill="#06b6d4">HAND-DRAWN SVG</text>
+    <text x="20" y="62" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">Every service icon built on a 24x24 grid.</text>
+    <text x="20" y="80" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">No icon libraries. No font icons. Just paths.</text>
+  </g>
+  <!-- card 3: magnetic buttons -->
+  <g transform="translate(0, 116)">
+    <rect width="440" height="100" rx="10" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+    <rect width="440" height="100" rx="10" fill="url(#fdots)"/>
+    <g transform="translate(20, 18)" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" fill="none">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 8v8"/>
+      <path d="M8 12h8"/>
+    </g>
+    <text x="56" y="38" font-family="monospace" font-size="12" letter-spacing="2" fill="#f97316">MAGNETIC BUTTONS</text>
+    <text x="20" y="62" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">clientX/clientY on mousemove, offset from center,</text>
+    <text x="20" y="80" font-family="monospace" font-size="11" fill="#71717a">transform: translate(dx, dy)</text>
+    <text x="232" y="80" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">— no library</text>
+  </g>
+  <!-- card 4: grain overlay -->
+  <g transform="translate(460, 116)">
+    <rect width="440" height="100" rx="10" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+    <rect width="440" height="100" rx="10" fill="url(#fdots)"/>
+    <g transform="translate(20, 18)" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="3"/>
+      <circle cx="8" cy="9" r="1" fill="#06b6d4" stroke="none" opacity="0.5"/>
+      <circle cx="14" cy="7" r="0.8" fill="#06b6d4" stroke="none" opacity="0.3"/>
+      <circle cx="11" cy="14" r="1.2" fill="#06b6d4" stroke="none" opacity="0.4"/>
+      <circle cx="17" cy="16" r="0.7" fill="#06b6d4" stroke="none" opacity="0.3"/>
+      <circle cx="6" cy="17" r="0.9" fill="#06b6d4" stroke="none" opacity="0.5"/>
+      <circle cx="15" cy="11" r="0.6" fill="#06b6d4" stroke="none" opacity="0.2"/>
+    </g>
+    <text x="56" y="38" font-family="monospace" font-size="12" letter-spacing="2" fill="#06b6d4">GRAIN TEXTURE</text>
+    <text x="20" y="62" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">feTurbulence SVG filter as ::after pseudo.</text>
+    <text x="20" y="80" font-family="system-ui, sans-serif" font-size="12" fill="#a1a1aa">Opacity 0.03 — feel it, don't see it.</text>
+  </g>
+</svg>

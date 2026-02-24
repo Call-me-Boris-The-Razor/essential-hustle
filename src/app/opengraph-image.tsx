@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { SITE_CONFIG, SERVICES } from "@/lib/site-config";
+import messages from "../../messages/en.json";
 
 export const alt = SITE_CONFIG.name;
 export const size = { width: 1200, height: 630 };
@@ -95,7 +96,7 @@ export default function OgImage() {
             marginTop: "16px",
           }}
         >
-          {SITE_CONFIG.tagline}
+          {messages.meta.tagline}
         </span>
 
         {/* Service tags */}
@@ -119,7 +120,9 @@ export default function OgImage() {
                 fontFamily: "monospace",
               }}
             >
-              {s.title}
+              {typeof messages.services[s.id as keyof typeof messages.services] === "object"
+                ? (messages.services[s.id as keyof typeof messages.services] as { title: string }).title
+                : s.id}
             </div>
           ))}
         </div>

@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-02-25
+
+### Added
+- **i18n support** (EN / RU / ZH) via `next-intl` v4.8
+  - Middleware-based locale detection with `localePrefix: "as-needed"`
+  - Message files: `messages/en.json`, `messages/ru.json`, `messages/zh.json` (81 keys each)
+  - Locale-aware routing: `src/i18n/config.ts`, `routing.ts`, `request.ts`
+  - `createNavigation()` for locale-aware `Link`, `useRouter`, `usePathname`
+  - `NextIntlClientProvider` in `[locale]/layout.tsx`
+- **Language switcher** component (EN / RU / ZH toggle in header)
+- **Locale-aware SEO**: hreflang alternates in metadata, sitemap with per-locale entries
+- **Local fonts** via `@fontsource-variable` (Space Grotesk, Inter, JetBrains Mono) — no Google Fonts fetch dependency
+
+### Changed
+- All UI components migrated to `useTranslations` / `getTranslations`
+- `site-config.ts` refactored to structural-only data (URLs, IDs, tags)
+- Routes restructured to `src/app/[locale]/` prefix
+- Blog pages use locale-aware `Link` and locale-formatted dates
+- `opengraph-image.tsx`, `json-ld.tsx`, `api/site-summary` read from EN messages for canonical text
+- Sitemap generates entries for all 3 locales with `alternates`
+
+### Fixed
+- LanguageSwitcher: uses `next-intl` navigation instead of manual pathname parsing (#78)
+- Blog back links now locale-aware (#79)
+- Dynamic Tailwind class `text-${size}` replaced with lookup map (#81)
+- All hardcoded UI strings translated (#82)
+- Indentation drift in hero.tsx, contact.tsx (#83)
+- hreflang and sitemap locale support (#84)
+
+### Dependencies
+- `next-intl` ^4.8.3
+- `@fontsource-variable/space-grotesk`
+- `@fontsource-variable/inter`
+- `@fontsource-variable/jetbrains-mono`
+
 ## [0.5.0] - 2025-02-25
 
 ### Added

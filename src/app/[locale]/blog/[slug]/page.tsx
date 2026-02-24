@@ -1,14 +1,15 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import { getTranslations } from "next-intl/server";
 import { getPost, getSlugs } from "@/lib/blog";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { mdxComponents } from "@/components/mdx-components";
 import type { Metadata } from "next";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateStaticParams() {
   return getSlugs().map((slug) => ({ slug }));
@@ -33,9 +34,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const post = getPost(slug);
   if (!post) notFound();
+
+  const t = await getTranslations({ locale, namespace: "blog" });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -60,13 +63,13 @@ export default async function BlogPostPage({ params }: Props) {
           className="inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-text-primary"
         >
           <ArrowLeft size={16} />
-          Back to blog
+          {t("back")}
         </Link>
 
         <header className="mt-8 mb-12">
           <div className="flex items-center gap-3 text-sm text-text-muted">
             <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString("en-US", {
+              {new Date(post.date).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -109,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
             className="inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-text-primary"
           >
             <ArrowLeft size={16} />
-            Back to all posts
+            {t("backAll")}
           </Link>
         </footer>
       </article>

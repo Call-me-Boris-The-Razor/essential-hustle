@@ -1,8 +1,12 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { SITE_CONFIG, NAV_LINKS } from "@/lib/site-config";
 import { GitHubIcon, TelegramIcon } from "@/components/ui/icons";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const t = useTranslations("nav");
 
   return (
     <footer className="border-t border-border py-12">
@@ -28,7 +32,7 @@ export const Footer = () => {
                 href={link.href}
                 className="text-sm text-text-muted transition-colors hover:text-text-secondary"
               >
-                {link.label}
+                {t(link.key)}
               </a>
             ))}
           </div>

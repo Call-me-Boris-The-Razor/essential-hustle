@@ -1,30 +1,40 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { getAllPosts } from "@/lib/blog";
 import { SITE_CONFIG } from "@/lib/site-config";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: `Blog — ${SITE_CONFIG.name}`,
-  description: `Engineering insights, DevOps practices, and technical deep-dives from ${SITE_CONFIG.name}.`,
-};
+type Props = { params: Promise<{ locale: string }> };
 
-export default function BlogPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+
+  return {
+    title: `${t("label")} — ${SITE_CONFIG.name}`,
+    description: t("description"),
+  };
+}
+
+export default async function BlogPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
   const posts = getAllPosts();
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-32">
       <header className="mb-16">
-        <span className="font-mono text-sm uppercase tracking-widest text-accent">Blog</span>
+        <span className="font-mono text-sm uppercase tracking-widest text-accent">{t("label")}</span>
         <h1 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
-          Engineering Notes<span className="text-accent">.</span>
+          {t("title")}<span className="text-accent">.</span>
         </h1>
         <p className="mt-4 text-lg text-text-secondary">
-          Technical deep-dives, infrastructure war stories, and lessons from production.
+          {t("description")}
         </p>
       </header>
 
       {posts.length === 0 ? (
-        <p className="text-text-muted">No posts yet. Check back soon.</p>
+        <p className="text-text-muted">{t("noPosts")}</p>
       ) : (
         <div className="space-y-12">
           {posts.map((post) => (
@@ -32,7 +42,7 @@ export default function BlogPage() {
               <Link href={`/blog/${post.slug}`} className="block">
                 <div className="flex items-center gap-3 text-sm text-text-muted">
                   <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString("en-US", {
+                    {new Date(post.date).toLocaleDateString(locale, {
                       year: "numeric",
                       month: "long",
                       day: "numeric",

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { submitContact } from "@/app/actions/contact";
 import { contactSchema } from "@/lib/contact-schema";
 
@@ -12,6 +13,7 @@ export const ContactForm = () => {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const t = useTranslations("contact.form");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ export const ContactForm = () => {
         (e.target as HTMLFormElement).reset();
       } else {
         setState("error");
-        setError(result.error ?? "Something went wrong");
+        setError(result.error ?? t("errorGeneric"));
       }
     });
   };
@@ -51,14 +53,14 @@ export const ContactForm = () => {
     return (
       <div className="flex flex-col items-center gap-3 py-8 text-center">
         <CheckCircle size={32} className="text-green-500" />
-        <p className="text-lg font-medium text-text-primary">Message sent!</p>
-        <p className="text-sm text-text-muted">We&apos;ll get back to you soon.</p>
+        <p className="text-lg font-medium text-text-primary">{t("success")}</p>
+        <p className="text-sm text-text-muted">{t("successSub")}</p>
         <button
           type="button"
           onClick={() => setState("idle")}
           className="mt-2 text-sm text-accent underline underline-offset-4 hover:text-accent-hover"
         >
-          Send another message
+          {t("sendAnother")}
         </button>
       </div>
     );
@@ -68,7 +70,7 @@ export const ContactForm = () => {
     <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-md space-y-4 text-left">
       <div>
         <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-text-secondary">
-          Name
+          {t("name")}
         </label>
         <input
           id="contact-name"
@@ -77,7 +79,7 @@ export const ContactForm = () => {
           required
           autoComplete="name"
           className="w-full rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-          placeholder="Your name"
+          placeholder={t("namePlaceholder")}
         />
         {fieldErrors.name && (
           <p className="mt-1 text-xs text-red-400">{fieldErrors.name}</p>
@@ -86,7 +88,7 @@ export const ContactForm = () => {
 
       <div>
         <label htmlFor="contact-email" className="mb-1 block text-sm font-medium text-text-secondary">
-          Email
+          {t("email")}
         </label>
         <input
           id="contact-email"
@@ -95,7 +97,7 @@ export const ContactForm = () => {
           required
           autoComplete="email"
           className="w-full rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-          placeholder="you@company.com"
+          placeholder={t("emailPlaceholder")}
         />
         {fieldErrors.email && (
           <p className="mt-1 text-xs text-red-400">{fieldErrors.email}</p>
@@ -104,7 +106,7 @@ export const ContactForm = () => {
 
       <div>
         <label htmlFor="contact-message" className="mb-1 block text-sm font-medium text-text-secondary">
-          Message
+          {t("message")}
         </label>
         <textarea
           id="contact-message"
@@ -112,7 +114,7 @@ export const ContactForm = () => {
           required
           rows={4}
           className="w-full resize-none rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-          placeholder="Tell us about your project..."
+          placeholder={t("messagePlaceholder")}
         />
         {fieldErrors.message && (
           <p className="mt-1 text-xs text-red-400">{fieldErrors.message}</p>
@@ -136,7 +138,7 @@ export const ContactForm = () => {
         ) : (
           <Send size={16} />
         )}
-        {isPending ? "Sending..." : "Send message"}
+        {isPending ? t("sending") : t("send")}
       </button>
     </form>
   );

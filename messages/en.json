@@ -107,7 +107,16 @@
       "success": "Message sent!",
       "successSub": "We'll get back to you soon.",
       "sendAnother": "Send another message",
-      "errorGeneric": "Something went wrong"
+      "errorGeneric": "Something went wrong",
+      "errorInvalid": "Invalid input",
+      "errorRateLimit": "Please wait before submitting again",
+      "errorSendFailed": "Failed to send message. Please try again.",
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be under 100 characters",
+      "emailInvalid": "Please enter a valid email address",
+      "emailMax": "Email must be under 254 characters",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message must be under 2000 characters"
     }
   },
   "blog": {
@@ -122,7 +131,9 @@
     "rights": "All rights reserved."
   },
   "common": {
-    "toggleMenu": "Toggle menu"
+    "toggleMenu": "Toggle menu",
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme"
   },
   "notFound": {
     "title": "Page not found",

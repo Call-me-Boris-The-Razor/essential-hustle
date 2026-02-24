@@ -3,8 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { SITE_CONFIG, NAV_LINKS } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/use-active-section";
@@ -49,10 +48,10 @@ export const Header = () => {
     <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-bg/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <a href="#" className="font-display text-lg font-bold tracking-tight text-text-primary">
+        <Link href="/" className="font-display text-lg font-bold tracking-tight text-text-primary">
           {SITE_CONFIG.name}
           <span className="text-accent">.</span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-8 md:flex">

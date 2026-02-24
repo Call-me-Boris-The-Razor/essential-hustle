@@ -8,6 +8,14 @@ import { contactSchema } from "@/lib/contact-schema";
 
 type FormState = "idle" | "success" | "error";
 
+const INPUT_CLASS = "w-full rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent";
+
+const FIELD_ERROR_KEYS: Record<string, Record<string, string>> = {
+  name: { too_small: "nameMin", too_big: "nameMax" },
+  email: { too_big: "emailMax", invalid_string: "emailInvalid" },
+  message: { too_small: "messageMin", too_big: "messageMax" },
+};
+
 export const ContactForm = () => {
   const [isPending, startTransition] = useTransition();
   const [state, setState] = useState<FormState>("idle");
@@ -30,7 +38,10 @@ export const ContactForm = () => {
       const errors: Record<string, string> = {};
       for (const issue of parsed.error.issues) {
         const field = issue.path[0]?.toString();
-        if (field && !errors[field]) errors[field] = issue.message;
+        if (field && !errors[field]) {
+          const key = FIELD_ERROR_KEYS[field]?.[issue.code] ?? "errorGeneric";
+          errors[field] = t(key);
+        }
       }
       setFieldErrors(errors);
       return;
@@ -44,7 +55,7 @@ export const ContactForm = () => {
         (e.target as HTMLFormElement).reset();
       } else {
         setState("error");
-        setError(result.error ?? t("errorGeneric"));
+        setError(t(result.error ?? "errorGeneric"));
       }
     });
   };
@@ -78,7 +89,7 @@ export const ContactForm = () => {
           type="text"
           required
           autoComplete="name"
-          className="w-full rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          className={INPUT_CLASS}
           placeholder={t("namePlaceholder")}
         />
         {fieldErrors.name && (
@@ -96,7 +107,7 @@ export const ContactForm = () => {
           type="email"
           required
           autoComplete="email"
-          className="w-full rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          className={INPUT_CLASS}
           placeholder={t("emailPlaceholder")}
         />
         {fieldErrors.email && (
@@ -113,7 +124,7 @@ export const ContactForm = () => {
           name="message"
           required
           rows={4}
-          className="w-full resize-none rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          className={`${INPUT_CLASS} resize-none`}
           placeholder={t("messagePlaceholder")}
         />
         {fieldErrors.message && (

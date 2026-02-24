@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { SITE_CONFIG, NAV_LINKS } from "@/lib/site-config";
 import { GitHubIcon, TelegramIcon } from "@/components/ui/icons";
 
@@ -26,15 +27,25 @@ export const Footer = () => {
 
           {/* Nav */}
           <div className="flex gap-6">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-text-muted transition-colors hover:text-text-secondary"
-              >
-                {t(link.key)}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-text-muted transition-colors hover:text-text-secondary"
+                >
+                  {t(link.key)}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-text-muted transition-colors hover:text-text-secondary"
+                >
+                  {t(link.key)}
+                </Link>
+              ),
+            )}
           </div>
 
           {/* Links */}

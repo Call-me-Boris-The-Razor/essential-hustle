@@ -26,6 +26,7 @@ export async function GET() {
     <title>${SITE_CONFIG.name} Blog</title>
     <link>${BASE_URL}/blog</link>
     <description>Engineering insights from ${SITE_CONFIG.name}</description>
+    <!-- RSS feed uses EN as canonical language for search engines -->
     <language>en</language>
     <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml" />
     ${items}

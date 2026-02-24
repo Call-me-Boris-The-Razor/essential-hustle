@@ -1,137 +1,113 @@
-<div align="center">
-
-# Essential Hustle.
-
-**Engineering studio website — from silicon to cloud.**
-
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61dafb?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)](https://typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-f97316)](LICENSE)
+<picture>
+  <img src=".github/banner.svg" alt="Essential Hustle" width="100%" />
+</picture>
 
 <br />
 
-[Live Site](https://essentialhustle.dev) · [Report Bug](https://github.com/Call-me-Boris-The-Razor/essential-hustle/issues) · [Request Feature](https://github.com/Call-me-Boris-The-Razor/essential-hustle/issues)
+Site for a small engineering studio that does DevOps, AI, embedded, and web.
+Dark theme, custom icons, scroll animations. No templates, no page builders.
 
-</div>
+```
+essentialhustle.dev
+```
 
 ---
 
-## Overview
+### Stack
 
-Marketing website for **Essential Hustle** — a tech services studio specializing in DevOps, AI integration, embedded systems, and full-stack web development.
+<picture>
+  <img src=".github/stack.svg" alt="Tech stack" width="100%" />
+</picture>
 
-### Key Features
+---
 
-- **Dark theme** with orange (#f97316) / cyan (#06b6d4) accent palette
-- **3 font families** — Space Grotesk (display), Inter (body), JetBrains Mono (code)
-- **Scroll animations** via Framer Motion with viewport-triggered reveals
-- **Custom SVG icons** — hand-crafted service icons on 24x24 grid
-- **Magnetic buttons** — subtle cursor-follow effect on CTAs
-- **Grain texture overlay** — adds tactile depth to the dark background
-- **Fully responsive** — mobile hamburger menu with animated transitions
-- **Zero hardcode** — all content lives in `site-config.ts`
+### How it's built
 
-## Tech Stack
-
-| Layer | Technology | Version |
-|-------|-----------|---------|
-| Framework | Next.js (App Router) | 16.x |
-| UI | React | 19.x |
-| Language | TypeScript | 5.x |
-| Styling | Tailwind CSS | 4.x |
-| Animation | Framer Motion | 12.x |
-| Icons | Lucide React + Custom SVG | — |
-| Fonts | Google Fonts (next/font) | — |
-
-## Project Structure
+Everything renders from one config file. No content is hardcoded in components.
 
 ```
-src/
-├── app/
-│   ├── globals.css          # Design tokens (CSS custom properties)
-│   ├── layout.tsx           # Root layout: fonts, metadata, grain overlay
-│   └── page.tsx             # Page composition (all sections)
-├── components/
-│   ├── header.tsx           # Sticky nav + mobile menu
-│   ├── hero.tsx             # Hero: headline, CTAs, dot grid, gradient orbs
-│   ├── services.tsx         # 4 service cards with custom SVG icons
-│   ├── projects.tsx         # Editorial project list with status badges
-│   ├── about.tsx            # About text + animated stats grid
-│   ├── contact.tsx          # CTA section with gradient overlay
-│   ├── footer.tsx           # Brand, nav links, social icons
-│   └── ui/
-│       ├── dot-grid.tsx     # Background dot pattern
-│       ├── magnetic-button.tsx  # Cursor-follow button effect
-│       └── section-heading.tsx  # Reusable section header
-└── lib/
-    └── site-config.ts       # All site content & configuration
+src/lib/site-config.ts    ← all text, links, project data
+src/app/globals.css        ← design tokens (CSS custom properties)
 ```
 
-## Getting Started
+Sections are standalone components composed in `page.tsx`:
 
-### Prerequisites
+```
+Header → Hero → Services → Projects → About → Contact → Footer
+```
 
-- **Node.js** >= 22.x
-- **npm** (package manager)
+Each service icon is hand-drawn SVG on a 24×24 grid, inline in the component.
+Animations use Framer Motion with viewport-triggered reveals.
+Magnetic button effect tracks cursor position and shifts via `transform: translate`.
 
-### Installation
+---
+
+### Run it
 
 ```bash
 git clone https://github.com/Call-me-Boris-The-Razor/essential-hustle.git
 cd essential-hustle
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Needs Node >= 22. Opens on `localhost:3000`.
 
-### Build
+---
 
-```bash
-npm run build
-npm start
+### Files
+
+```
+src/
+├── app/
+│   ├── globals.css             design tokens, grain overlay, scrollbar
+│   ├── layout.tsx              3 fonts, metadata, OG tags
+│   └── page.tsx                section composition
+├── components/
+│   ├── header.tsx              sticky nav, mobile menu (AnimatePresence)
+│   ├── hero.tsx                headline, dot grid, gradient orbs, CTAs
+│   ├── services.tsx            4 cards with custom SVG icons + tags
+│   ├── projects.tsx            editorial list, status badges, hover states
+│   ├── about.tsx               split layout: text + animated stats
+│   ├── contact.tsx             CTA card with radial gradient
+│   ├── footer.tsx              brand, nav, GitHub/Telegram SVG icons
+│   └── ui/
+│       ├── dot-grid.tsx        configurable background dot pattern
+│       ├── magnetic-button.tsx cursor-follow effect, focus-visible, a11y
+│       └── section-heading.tsx label + title + optional description
+└── lib/
+    └── site-config.ts          SITE_CONFIG, SERVICES, PROJECTS, ABOUT_TEXT
 ```
 
-### Type Check
+---
 
-```bash
-npx tsc --noEmit
-```
+### Design decisions
 
-## Configuration
+**Palette** — dark base `#09090b`, orange accent `#f97316` for energy, cyan `#06b6d4` for tech contrast. Warm + cool, not same hue family.
 
-All site content is centralized in [`src/lib/site-config.ts`](src/lib/site-config.ts):
+**Typography** — Space Grotesk for display (geometric, techy), Inter for body (clean), JetBrains Mono for tags/code. Three fonts with distinct roles, not one font everywhere.
 
-| Constant | Purpose |
-|----------|---------|
-| `SITE_CONFIG` | Name, domain, tagline, email, social links |
-| `NAV_LINKS` | Navigation menu items |
-| `SERVICES` | Service cards (title, description, tags) |
-| `PROJECTS` | Project showcase (title, description, tags, status) |
-| `ABOUT_TEXT` | About section text + stats |
+**Layout** — hero is asymmetric (content left, side label right rotated). Services use 2×2 bento grid. Projects use editorial numbered rows, not cards. About splits text/stats into two columns.
 
-Design tokens are defined as CSS custom properties in [`src/app/globals.css`](src/app/globals.css).
+**Grain** — SVG noise filter as `::after` pseudo on body. `z-index: 50`, `pointer-events: none`, `opacity: 0.03`. Adds texture without hurting readability.
 
-## Environment Variables
+---
 
-Copy `.env.example` to `.env.local`:
+### Environment
 
 ```bash
 cp .env.example .env.local
 ```
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Contact email displayed on site | No (fallback in config) |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID | No |
+| Variable | What it does |
+|----------|-------------|
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Override contact email |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics ID |
 
-## License
+Both optional. Defaults are in `site-config.ts`.
 
-MIT — see [LICENSE](LICENSE) for details.
+---
+
+### License
+
+MIT

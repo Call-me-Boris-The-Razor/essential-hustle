@@ -3,46 +3,88 @@
 </picture>
 
 <br />
+<br />
 
-Site for a small engineering studio that does DevOps, AI, embedded, and web.
-Dark theme, custom icons, scroll animations. No templates, no page builders.
+We don't use templates. We don't use page builders.
+This is a hand-built site for an engineering studio that ships
+infrastructure, AI pipelines, embedded firmware, and web apps.
 
-```
-essentialhustle.dev
-```
+Every pixel, every icon, every animation — written from scratch.
 
----
-
-### Stack
+<br />
 
 <picture>
-  <img src=".github/stack.svg" alt="Tech stack" width="100%" />
+  <img src=".github/stack.svg" alt="Next.js · React · TypeScript · Tailwind · Framer Motion · Custom SVG" width="100%" />
 </picture>
 
----
-
-### How it's built
-
-Everything renders from one config file. No content is hardcoded in components.
-
-```
-src/lib/site-config.ts    ← all text, links, project data
-src/app/globals.css        ← design tokens (CSS custom properties)
-```
-
-Sections are standalone components composed in `page.tsx`:
-
-```
-Header → Hero → Services → Projects → About → Contact → Footer
-```
-
-Each service icon is hand-drawn SVG on a 24×24 grid, inline in the component.
-Animations use Framer Motion with viewport-triggered reveals.
-Magnetic button effect tracks cursor position and shifts via `transform: translate`.
+<br />
 
 ---
 
-### Run it
+<br />
+
+### What's different
+
+Zero content lives in components. One config file drives the entire site:
+
+```
+site-config.ts → all text, all links, all project data, all stats
+globals.css    → every color, every spacing token, every font assignment
+```
+
+Change the config — site updates everywhere. No hunting through JSX.
+
+<br />
+
+Every service icon is hand-drawn on a `24×24` SVG grid. Not pulled from a library.
+The GitHub and Telegram icons in the footer — also hand-drawn.
+There is no icon dependency besides Lucide for the header nav.
+
+<br />
+
+The magnetic button effect doesn't use a library either.
+It reads `clientX`/`clientY` on `mousemove`, calculates offset from center,
+and applies `transform: translate` with a configurable strength multiplier.
+Simple math, no packages.
+
+<br />
+
+Grain overlay is a `feTurbulence` SVG filter rendered as a `::after` pseudo-element
+on `<body>`. Fixed position, `pointer-events: none`, `opacity: 0.03`.
+You barely notice it, but remove it and the page feels flat.
+
+<br />
+
+---
+
+<br />
+
+### Why it looks the way it looks
+
+Dark base is `#09090b` — almost black but not quite. Pure black (`#000`) feels
+like a hole in the screen. This has just enough warmth.
+
+Orange `#f97316` paired with cyan `#06b6d4`. Warm energy against cold tech.
+Two accents from opposite ends of the spectrum — if they were the same hue family
+the whole thing would look monotone.
+
+Three typefaces, three jobs. **Space Grotesk** for headlines — geometric, techy,
+wide. **Inter** for body text — neutral, readable, disappears. **JetBrains Mono**
+for tags and code snippets — because monospace signals "this is technical" without
+saying it.
+
+Hero is asymmetric on purpose. Content pushes left, a rotated side label floats
+right at `rotate(-90deg)`. Services are a `2×2` bento grid, not a list.
+Projects are editorial numbered rows — not cards, because cards all look the same.
+About section splits into text left, animated stats right.
+
+<br />
+
+---
+
+<br />
+
+### Run locally
 
 ```bash
 git clone https://github.com/Call-me-Boris-The-Razor/essential-hustle.git
@@ -51,63 +93,17 @@ npm install
 npm run dev
 ```
 
-Needs Node >= 22. Opens on `localhost:3000`.
+Node >= 22. Opens at `localhost:3000`.
+
+`npm run version:sync` updates the version in the banner SVG from `package.json`.
+This also runs automatically as a pre-commit hook.
+
+<br />
 
 ---
 
-### Files
-
-```
-src/
-├── app/
-│   ├── globals.css             design tokens, grain overlay, scrollbar
-│   ├── layout.tsx              3 fonts, metadata, OG tags
-│   └── page.tsx                section composition
-├── components/
-│   ├── header.tsx              sticky nav, mobile menu (AnimatePresence)
-│   ├── hero.tsx                headline, dot grid, gradient orbs, CTAs
-│   ├── services.tsx            4 cards with custom SVG icons + tags
-│   ├── projects.tsx            editorial list, status badges, hover states
-│   ├── about.tsx               split layout: text + animated stats
-│   ├── contact.tsx             CTA card with radial gradient
-│   ├── footer.tsx              brand, nav, GitHub/Telegram SVG icons
-│   └── ui/
-│       ├── dot-grid.tsx        configurable background dot pattern
-│       ├── magnetic-button.tsx cursor-follow effect, focus-visible, a11y
-│       └── section-heading.tsx label + title + optional description
-└── lib/
-    └── site-config.ts          SITE_CONFIG, SERVICES, PROJECTS, ABOUT_TEXT
-```
-
----
-
-### Design decisions
-
-**Palette** — dark base `#09090b`, orange accent `#f97316` for energy, cyan `#06b6d4` for tech contrast. Warm + cool, not same hue family.
-
-**Typography** — Space Grotesk for display (geometric, techy), Inter for body (clean), JetBrains Mono for tags/code. Three fonts with distinct roles, not one font everywhere.
-
-**Layout** — hero is asymmetric (content left, side label right rotated). Services use 2×2 bento grid. Projects use editorial numbered rows, not cards. About splits text/stats into two columns.
-
-**Grain** — SVG noise filter as `::after` pseudo on body. `z-index: 50`, `pointer-events: none`, `opacity: 0.03`. Adds texture without hurting readability.
-
----
-
-### Environment
-
-```bash
-cp .env.example .env.local
-```
-
-| Variable | What it does |
-|----------|-------------|
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Override contact email |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics ID |
-
-Both optional. Defaults are in `site-config.ts`.
-
----
+<br />
 
 ### License
 
-MIT
+MIT — do whatever you want with it.

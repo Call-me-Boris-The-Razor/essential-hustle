@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { SITE_CONFIG, NAV_LINKS } from "@/lib/site-config";
+import { useActiveSection } from "@/lib/use-active-section";
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const activeSection = useActiveSection(NAV_LINKS.map((l) => l.href));
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -28,7 +30,10 @@ export const Header = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+              aria-current={activeSection === link.href ? "true" : undefined}
+              className={`text-sm transition-colors hover:text-text-primary ${
+                activeSection === link.href ? "text-accent" : "text-text-secondary"
+              }`}
             >
               {link.label}
             </a>
@@ -66,7 +71,10 @@ export const Header = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-base text-text-secondary transition-colors hover:text-text-primary"
+                  aria-current={activeSection === link.href ? "true" : undefined}
+                  className={`text-base transition-colors hover:text-text-primary ${
+                    activeSection === link.href ? "text-accent" : "text-text-secondary"
+                  }`}
                 >
                   {link.label}
                 </a>

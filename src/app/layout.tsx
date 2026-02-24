@@ -63,6 +63,7 @@ export default function RootLayout({
         <JsonLd />
         <link rel="author" href="/humans.txt" />
         <link rel="alternate" type="application/json" href="/api/site-summary" />
+        <link rel="alternate" type="application/rss+xml" title="Essential Hustle Blog" href="/feed.xml" />
       </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} grain antialiased`}

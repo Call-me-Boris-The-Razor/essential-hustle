@@ -1,0 +1,115 @@
+---
+title: "Docker Compose Patterns for Production"
+date: "2025-02-15"
+description: "Battle-tested docker-compose patterns we use across 15+ containers — health checks, restart policies, resource limits, and secrets management."
+tags: ["Docker", "DevOps", "Infrastructure"]
+---
+
+After running 15+ containers across multiple servers, we've converged on a set of patterns that prevent the most common production failures.
+
+## Health Checks That Actually Work
+
+The default Docker health check is "is the process running?" — which tells you nothing about whether the service is *functional*.
+
+```yaml
+services:
+  postgres:
+    image: postgres:16-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+```
+
+The `start_period` is crucial. Without it, slow-starting services (especially Java/JVM) will be marked unhealthy before they finish initializing.
+
+## Restart Policies
+
+Every production service needs a restart policy. But `restart: always` without limits creates restart storms:
+
+```yaml
+services:
+  api:
+    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 10
+        window: 120s
+```
+
+If a service crashes 10 times within 2 minutes, something is fundamentally wrong — let it stay down and alert instead of burning CPU on restart loops.
+
+## Secrets Management
+
+Never put secrets in `docker-compose.yml`. Use `.env` files with strict permissions:
+
+```bash
+chmod 600 .env
+```
+
+And reference them properly:
+
+```yaml
+services:
+  app:
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+```
+
+The `.env` file stays on the server, never in git. Only `.env.example` gets committed.
+
+## Volume Patterns
+
+Named volumes for data persistence, bind mounts only for configs that need host access:
+
+```yaml
+volumes:
+  postgres-data:    # Named: survives container recreation
+  redis-data:       # Named: automatic backup target
+
+services:
+  nginx:
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Bind: editable config, read-only
+      - certs:/etc/letsencrypt:ro               # Named: shared with certbot
+```
+
+The `:ro` flag prevents containers from modifying mounted configs — defense in depth.
+
+## Network Isolation
+
+Don't put everything on the default network. Segment by trust level:
+
+```yaml
+networks:
+  frontend:   # Public-facing services
+  backend:    # Internal services only
+  monitoring: # Metrics and logging
+
+services:
+  nginx:
+    networks: [frontend, backend]  # Bridge between public and internal
+  api:
+    networks: [backend]            # No direct public access
+  postgres:
+    networks: [backend]            # Database never touches frontend
+```
+
+## The Checklist
+
+Before deploying any new service:
+
+- [ ] Health check that verifies functionality, not just process
+- [ ] Restart policy with max attempts
+- [ ] Resource limits (memory at minimum)
+- [ ] Named volumes for persistent data
+- [ ] Read-only mounts where possible
+- [ ] Network isolation
+- [ ] Log rotation configured
+- [ ] `.env` with chmod 600
+
+These patterns aren't glamorous, but they're the difference between a service that runs for months unattended and one that wakes you up at 3 AM.

@@ -1,0 +1,63 @@
+---
+title: "Deploying Ollama on Consumer GPUs"
+date: "2025-02-20"
+description: "A practical guide to running large language models locally with Ollama on a GTX 1070 — memory management, Docker setup, and production patterns."
+tags: ["AI", "Ollama", "Docker", "GPU"]
+---
+
+Running LLMs locally isn't just for enthusiasts with enterprise hardware. With the right configuration, a consumer GPU like the GTX 1070 (8GB VRAM) can serve models efficiently in production.
+
+## Why Self-Host?
+
+Three reasons we moved away from API-only LLM access:
+
+- **Latency** — local inference eliminates network round-trips
+- **Privacy** — sensitive data never leaves the network
+- **Cost** — after initial hardware investment, inference is free
+
+## The Setup
+
+Our stack runs on Ubuntu 24.04 with Docker Compose. Ollama sits alongside other AI services:
+
+```yaml
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    environment:
+      OLLAMA_KEEP_ALIVE: "0s"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+```
+
+The key insight: `KEEP_ALIVE=0s` means models unload from VRAM immediately after each request. This lets multiple GPU services coexist on limited hardware.
+
+## VRAM Management
+
+With 8GB VRAM shared across services, every megabyte matters:
+
+| Service | Idle VRAM | Active VRAM |
+|---------|-----------|-------------|
+| Ollama | 0 MB | ~5.6 GB |
+| Whisper | 904 MB | 904 MB |
+| TTS | 0 MB | ~5 GB |
+
+The pattern: keep persistent services small (Whisper with int8 quantization), and unload heavy models immediately. Only one large model runs at a time.
+
+## Lessons Learned
+
+1. **float16 isn't always safe** — on older GPUs (Compute Capability 6.1), float16 can produce NaN/Inf values. Use float32 or int8 quantization instead.
+
+2. **Docker GPU access requires nvidia-container-toolkit** — not just the driver. This trips up most first-time setups.
+
+3. **Health checks matter** — Ollama doesn't crash gracefully when VRAM is exhausted. Add proper health checks and restart policies.
+
+## What's Next
+
+We're exploring multi-model orchestration — routing requests to the right model based on task complexity. Small queries go to 7B models, complex ones to 70B with quantization.
+
+The bottom line: you don't need an A100 to run LLMs in production. A well-configured consumer GPU gets you surprisingly far.

@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_CONFIG, SERVICES } from "@/lib/site-config";
 import { Providers } from "@/components/providers";
 import { JsonLd } from "@/components/json-ld";
+import { Analytics } from "@/components/analytics";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -81,6 +82,7 @@ export default function RootLayout({
           </div>
         </noscript>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );

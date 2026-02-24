@@ -66,6 +66,12 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} grain antialiased`}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-bg focus:text-sm focus:font-semibold"
+        >
+          Skip to content
+        </a>
         <noscript>
           <div style={{ padding: "2rem", color: "var(--text-primary)", fontFamily: "system-ui" }}>
             <h1>{SITE_CONFIG.name} — {SITE_CONFIG.tagline}</h1>

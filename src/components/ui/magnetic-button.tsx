@@ -1,0 +1,52 @@
+"use client";
+
+import { useRef, type ReactNode } from "react";
+
+interface MagneticButtonProps {
+  children: ReactNode;
+  href?: string;
+  className?: string;
+  strength?: number;
+}
+
+export const MagneticButton = ({
+  children,
+  href,
+  className = "",
+  strength = 0.15,
+}: MagneticButtonProps) => {
+  const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (ref.current) ref.current.style.transform = "translate(0, 0)";
+  };
+
+  const props = {
+    onMouseMove: handleMouseMove,
+    onMouseLeave: handleMouseLeave,
+    className: `inline-flex items-center justify-center transition-transform duration-200 ${className}`,
+  };
+
+  if (href) {
+    return (
+      <a ref={ref as React.RefObject<HTMLAnchorElement>} href={href} {...props}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <button ref={ref as React.RefObject<HTMLButtonElement>} {...props}>
+      {children}
+    </button>
+  );
+};

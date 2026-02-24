@@ -1,0 +1,62 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Mail, ArrowUpRight } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/site-config";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+
+export const Contact = () => (
+  <section id="contact" className="relative py-32">
+    <div className="mx-auto max-w-7xl px-6">
+      <div className="relative overflow-hidden rounded-3xl border border-border bg-surface-1 px-8 py-20 text-center md:px-16 md:py-28">
+        {/* Decorative gradient */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, var(--accent) 0%, transparent 60%)",
+          }}
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+          className="relative"
+        >
+          <span className="font-mono text-sm tracking-widest uppercase text-accent">
+            Let&apos;s talk
+          </span>
+
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-6xl">
+            Have a project in mind?
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-lg text-lg text-text-secondary">
+            We&apos;re always looking for interesting engineering challenges.
+            Drop us a line and let&apos;s build something great.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <MagneticButton
+              href={`mailto:${SITE_CONFIG.email}`}
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+            >
+              <Mail size={18} />
+              {SITE_CONFIG.email}
+            </MagneticButton>
+
+            <MagneticButton
+              href={SITE_CONFIG.telegram}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-4 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-2"
+            >
+              Telegram
+              <ArrowUpRight size={16} />
+            </MagneticButton>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  </section>
+);

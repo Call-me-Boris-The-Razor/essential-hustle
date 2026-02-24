@@ -127,3 +127,21 @@ export const CONTACT_TEXT = {
   description:
     "We're always looking for interesting engineering challenges. Drop us a line and let's build something great.",
 } as const;
+
+export const TESTIMONIALS = [
+  {
+    quote: "They rebuilt our entire monitoring stack in two weeks. Zero downtime during migration.",
+    author: "CTO",
+    company: "Logistics SaaS",
+  },
+  {
+    quote: "The only team that understood both the firmware and the cloud side of our IoT project.",
+    author: "Founder",
+    company: "Smart Agriculture Startup",
+  },
+  {
+    quote: "Production-ready from day one. No hand-holding required after handoff.",
+    author: "VP Engineering",
+    company: "FinTech Platform",
+  },
+] as const;

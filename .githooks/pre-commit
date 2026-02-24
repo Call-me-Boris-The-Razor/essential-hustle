@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Sync version from package.json into banner SVG
+node scripts/sync-version.mjs
+
+# If banner was updated, stage it
+git diff --quiet .github/banner.svg || git add .github/banner.svg

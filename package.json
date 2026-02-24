@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "version:sync": "node scripts/sync-version.mjs",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "framer-motion": "^12.34.3",

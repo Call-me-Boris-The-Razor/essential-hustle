@@ -39,7 +39,16 @@ const isRateLimited = (clientId: string): boolean => {
   return false;
 };
 
-export async function submitContact(data: ContactFormData): Promise<ActionResult> {
+export async function submitContact(
+  data: ContactFormData,
+  honeypot?: string,
+): Promise<ActionResult> {
+  // Honeypot — bots fill this hidden field, humans don't
+  if (honeypot) {
+    // Silently accept to not reveal detection
+    return { success: true };
+  }
+
   // Validate
   const parsed = contactSchema.safeParse(data);
   if (!parsed.success) {

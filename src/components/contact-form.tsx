@@ -48,8 +48,9 @@ export const ContactForm = () => {
     }
 
     setFieldErrors({});
+    const honeypot = (formData.get("website") as string) || undefined;
     startTransition(async () => {
-      const result = await submitContact(parsed.data);
+      const result = await submitContact(parsed.data, honeypot);
       if (result.success) {
         setState("success");
         (e.target as HTMLFormElement).reset();
@@ -82,6 +83,16 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-md space-y-4 text-left">
+      {/* Honeypot — hidden from humans, traps bots that auto-fill all fields */}
+      <input
+        type="text"
+        name="website"
+        autoComplete="off"
+        tabIndex={-1}
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
       <div>
         <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-text-secondary">
           {t("name")}

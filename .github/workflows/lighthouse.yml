@@ -6,6 +6,8 @@ on:
 
 jobs:
   lighthouse:
+    # Skip on Dependabot PRs — dep bumps don't affect Lighthouse scores
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

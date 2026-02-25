@@ -59,7 +59,7 @@ describe("mail.ts", () => {
       const { sendContactEmail } = await import("@/lib/mail");
       await sendContactEmail(validContact);
 
-      const notificationCall = mockSendMail.mock.calls[0][0];
+      const notificationCall = mockSendMail.mock.calls[0]![0];
       expect(notificationCall.replyTo).toBe("boris@example.com");
       expect(notificationCall.subject).toContain("Boris Kuznetsov");
       expect(notificationCall.html).toContain("Boris Kuznetsov");
@@ -106,7 +106,7 @@ describe("mail.ts", () => {
         message: 'Message with <img src=x onerror=alert(1)>',
       });
 
-      const html = mockSendMail.mock.calls[0][0].html;
+      const html = mockSendMail.mock.calls[0]![0].html;
       expect(html).not.toContain("<script>");
       expect(html).toContain("&lt;script&gt;");
       expect(html).not.toContain("<img");
@@ -125,7 +125,7 @@ describe("mail.ts", () => {
         message: "Header injection attempt via name field in subject.",
       });
 
-      const subject = mockSendMail.mock.calls[0][0].subject;
+      const subject = mockSendMail.mock.calls[0]![0].subject;
       expect(subject).not.toContain("\r");
       expect(subject).not.toContain("\n");
     });
@@ -142,7 +142,7 @@ describe("mail.ts", () => {
         name: "A".repeat(250),
       });
 
-      const subject = mockSendMail.mock.calls[0][0].subject;
+      const subject = mockSendMail.mock.calls[0]![0].subject;
       expect(subject.length).toBeLessThanOrEqual(200);
     });
 
@@ -156,7 +156,7 @@ describe("mail.ts", () => {
       await sendContactEmail(validContact);
 
       // Auto-reply is the second call
-      const autoReplyHtml = mockSendMail.mock.calls[1][0].html;
+      const autoReplyHtml = mockSendMail.mock.calls[1]![0].html;
       expect(autoReplyHtml).toContain("hello@essentialhustle.dev");
     });
   });

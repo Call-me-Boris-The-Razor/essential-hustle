@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { getAllPosts } from "@/lib/blog";
+import { CASE_STUDIES } from "@/lib/case-studies";
 import { locales, defaultLocale } from "@/i18n/config";
 
 const BASE_URL = `https://${SITE_CONFIG.domain}`;
@@ -32,6 +33,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]);
 
+  // Case study pages
+  const caseStudies: MetadataRoute.Sitemap = CASE_STUDIES.flatMap((cs) =>
+    locales.map((locale) => ({
+      url: localeUrl(`/projects/${cs.slug}`, locale),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      alternates: alternates(`/projects/${cs.slug}`),
+    })),
+  );
+
+  // Blog posts
   const blogPosts: MetadataRoute.Sitemap = getAllPosts().flatMap((post) =>
     locales.map((locale) => ({
       url: localeUrl(`/blog/${post.slug}`, locale),
@@ -42,5 +55,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...pages, ...blogPosts];
+  // Legal pages
+  const legalPages: MetadataRoute.Sitemap = ["/privacy", "/terms"].flatMap((path) =>
+    locales.map((locale) => ({
+      url: localeUrl(path, locale),
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+      alternates: alternates(path),
+    })),
+  );
+
+  return [...pages, ...caseStudies, ...blogPosts, ...legalPages];
 }

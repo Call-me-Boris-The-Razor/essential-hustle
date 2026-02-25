@@ -10,11 +10,18 @@ type ActionResult = {
   error?: string;
 };
 
-const RATE_LIMIT_MS = 60_000;
-const MAX_ENTRIES = 10_000;
-const submissions = new Map<string, number>();
+/**
+ * In-memory rate limiter — single-instance only.
+ * Resets on server/container restart. For horizontal scaling, replace with Redis.
+ */
+const RATE_LIMIT_MS = 60_000; // 1 minute cooldown per client
+const MAX_ENTRIES = 10_000;   // Hard cap before forced purge
+const PURGE_INTERVAL = 100;   // Purge every N submissions to prevent unbounded growth
 
-/** Purge expired entries to prevent unbounded memory growth */
+const submissions = new Map<string, number>();
+let requestCounter = 0;
+
+/** Remove expired entries to bound memory usage */
 const purgeExpired = (): void => {
   const now = Date.now();
   for (const [key, ts] of submissions) {
@@ -30,9 +37,15 @@ const getClientId = async (email: string): Promise<string> => {
     ?? email;
 };
 
-/** In-memory rate limiter per IP (resets on server restart) */
+/** Check and record rate limit. Returns true if client should be blocked. */
 const isRateLimited = (clientId: string): boolean => {
-  if (submissions.size > MAX_ENTRIES) purgeExpired();
+  requestCounter++;
+
+  // Periodic purge to prevent stale entry accumulation
+  if (requestCounter % PURGE_INTERVAL === 0 || submissions.size > MAX_ENTRIES) {
+    purgeExpired();
+  }
+
   const last = submissions.get(clientId);
   if (last && Date.now() - last < RATE_LIMIT_MS) return true;
   submissions.set(clientId, Date.now());

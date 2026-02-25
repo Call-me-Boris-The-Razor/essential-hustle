@@ -50,7 +50,7 @@ describe("telegram.ts", () => {
       expect(result).toBe(true);
       expect(fetch).toHaveBeenCalledTimes(1);
 
-      const [url, options] = vi.mocked(fetch).mock.calls[0];
+      const [url, options] = vi.mocked(fetch).mock.calls[0]!;
       expect(url).toContain("api.telegram.org");
       expect(url).toContain("sendMessage");
 
@@ -102,7 +102,7 @@ describe("telegram.ts", () => {
       });
 
       const body = JSON.parse(
-        (vi.mocked(fetch).mock.calls[0][1] as RequestInit).body as string,
+        (vi.mocked(fetch).mock.calls[0]![1] as RequestInit).body as string,
       );
       // MarkdownV2 special chars should be escaped with backslash
       expect(body.text).toContain("\\(");
@@ -124,7 +124,7 @@ describe("telegram.ts", () => {
       await sendTelegramNotification(validContact);
 
       const body = JSON.parse(
-        (vi.mocked(fetch).mock.calls[0][1] as RequestInit).body as string,
+        (vi.mocked(fetch).mock.calls[0]![1] as RequestInit).body as string,
       );
       expect(body.disable_web_page_preview).toBe(true);
     });

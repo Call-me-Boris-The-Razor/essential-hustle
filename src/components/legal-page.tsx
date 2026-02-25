@@ -32,8 +32,8 @@ export const LegalPage = ({ title, lastUpdated, intro, sections, backLabel }: Le
     <p className="mt-6 text-lg leading-relaxed text-text-secondary">{intro}</p>
 
     <div className="mt-12 space-y-10">
-      {sections.map((section, i) => (
-        <section key={i}>
+      {sections.map((section) => (
+        <section key={section.title}>
           <h2 className="font-display text-xl font-semibold tracking-tight">
             {section.title}
           </h2>

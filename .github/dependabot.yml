@@ -1,0 +1,32 @@
+version: 2
+
+updates:
+  # NPM dependencies
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "chore(deps):"
+    groups:
+      # Group minor/patch updates to reduce PR noise
+      production:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels:
+      - infra
+    commit-message:
+      prefix: "ci(deps):"

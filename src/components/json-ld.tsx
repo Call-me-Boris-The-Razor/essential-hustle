@@ -3,6 +3,10 @@ import { SITE_CONFIG, SERVICES } from "@/lib/site-config";
 // EN messages for structured data (search engines expect a single canonical language)
 import messages from "../../messages/en.json";
 
+/** Sanitize JSON-LD output to prevent script injection via </script> in data */
+const safeJsonLd = (data: unknown): string =>
+  JSON.stringify(data).replace(/</g, "\\u003c");
+
 const BASE_URL = `https://${SITE_CONFIG.domain}`;
 
 const organizationSchema = {
@@ -45,17 +49,17 @@ export const JsonLd = () => (
   <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationSchema) }}
     />
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(websiteSchema) }}
     />
     {serviceSchemas.map((schema) => (
       <script
         key={schema.name}
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
       />
     ))}
   </>

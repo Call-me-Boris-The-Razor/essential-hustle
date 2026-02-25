@@ -128,7 +128,52 @@
     "backAll": "返回所有文章"
   },
   "footer": {
-    "rights": "版权所有。"
+    "rights": "版权所有。",
+    "privacy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "lastUpdated": "最后更新：2026年2月25日",
+    "intro": "Essential Hustle（「我们」）尊重您的隐私。本政策说明我们在您访问 essentialhustle.dev 时如何收集、使用和保护您的信息。",
+    "section1Title": "我们收集的信息",
+    "section1p1": "我们仅收集运营网站和回复咨询所需的最少信息：",
+    "section1li1": "联系表单提交：姓名、电子邮件地址和消息内容——在您主动联系我们时自愿提供。",
+    "section1li2": "匿名分析：页面浏览量、来源、浏览器类型、国家和设备类型——通过自托管的 Umami Analytics 收集。无 Cookie、无个人标识符、无跨站追踪。",
+    "section1li3": "服务器日志：Nginx 访问日志中的 IP 地址，保留30天用于安全监控。",
+    "section2Title": "我们如何使用您的信息",
+    "section2li1": "通过电子邮件回复您的联系表单咨询。",
+    "section2li2": "根据匿名使用模式改进我们的网站。",
+    "section2li3": "监控和防止服务滥用。",
+    "section3Title": "分析",
+    "section3p1": "我们使用 Umami，一个注重隐私的自托管分析平台。Umami 不使用 Cookie，不收集个人数据，完全符合 GDPR。所有分析数据均为聚合匿名数据。",
+    "section4Title": "数据存储与安全",
+    "section4p1": "联系表单提交通过电子邮件传递，可选通过 Telegram 通知。我们不在任何数据库中存储表单数据。分析数据存储在我们私有网络中的自托管基础设施上。",
+    "section5Title": "第三方服务",
+    "section5p1": "我们不向第三方出售、共享或转让您的个人信息。我们的网站不加载任何第三方脚本、追踪器或广告网络。",
+    "section6Title": "您的权利",
+    "section6p1": "您可以通过 hello@essentialhustle.dev 联系我们，请求删除我们持有的任何个人数据。由于我们存储的数据极少，在大多数情况下，除电子邮件通信外没有其他需要删除的内容。",
+    "section7Title": "联系方式",
+    "section7p1": "如有隐私相关问题，请联系 hello@essentialhustle.dev。"
+  },
+  "terms": {
+    "title": "服务条款",
+    "lastUpdated": "最后更新：2026年2月25日",
+    "intro": "访问和使用 essentialhustle.dev 即表示您同意以下条款。",
+    "section1Title": "服务",
+    "section1p1": "Essential Hustle 提供工程咨询和开发服务。本网站作为信息和联系平台。项目范围、交付成果和条款在各项协议中定义。",
+    "section2Title": "知识产权",
+    "section2p1": "本网站上的所有内容——包括文字、设计、代码和图形——均归 Essential Hustle 所有，除非另有说明。未经书面许可，不得复制、分发或创建衍生作品。",
+    "section3Title": "联系表单",
+    "section3p1": "提交联系表单即表示您同意接收电子邮件回复。我们不会将您添加到任何邮件列表，也不会在回复您的咨询之外发送未经请求的通信。",
+    "section4Title": "责任限制",
+    "section4p1": "本网站按「原样」提供，不提供任何形式的保证。Essential Hustle 不对因使用本网站或依赖其内容而造成的任何损害承担责任。",
+    "section5Title": "适用法律",
+    "section5p1": "这些条款受适用的国际商法管辖。任何争议将通过善意协商解决。",
+    "section6Title": "变更",
+    "section6p1": "我们可能会不时更新这些条款。继续使用本网站即表示接受更新后的条款。",
+    "section7Title": "联系方式",
+    "section7p1": "如对这些条款有疑问，请联系 hello@essentialhustle.dev。"
   },
   "common": {
     "toggleMenu": "菜单",

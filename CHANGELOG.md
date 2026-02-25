@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-02-25
+
+### Added
+- **Health endpoint** — `GET /api/health` returning status, version, uptime, timestamp, env (#136)
+- **Automated deploy script** — `scripts/deploy.sh` with rsync sync, Docker rebuild, health check polling, and automatic rollback on failure (#135)
+- **BreadcrumbList JSON-LD** — structured data on blog posts and case study pages for SEO breadcrumb navigation (#134)
+- **Honeypot spam defense** — hidden field in contact form that silently drops bot submissions (#133)
+- **Global focus-visible ring** — keyboard accessibility with `outline: 2px solid accent` on all interactive elements (#132)
+- **README SVG conversion** — fully SVG-based README matching Sortina client pattern, zero raw markdown (#143)
+
+### Changed
+- **Caching headers** — `immutable` for hashed `_next/static`, `must-revalidate` for HTML, `stale-while-revalidate` for assets (#131)
+- **Docker healthcheck** — now uses `/api/health` endpoint instead of root page
+
+### Fixed
+- **Form accessibility** — `aria-describedby` linking inputs to error messages, `aria-invalid` on invalid fields, `role="alert"` on errors, `role="status"` on success (#132)
+- **Case study descriptions** — corrected all 4 project descriptions to match real codebases; MUX renamed from "Video Multiplexor" to "CRSF Relay" (#142)
+
+### Security
+- **Contact form honeypot** — bots that auto-fill hidden `website` field get silently accepted without processing (#133)
+- **Rate limiting** already existed (60s sliding window, IP-based) — now documented and honeypot added as secondary defense
+
 ## [0.9.0] - 2026-02-25
 
 ### Added

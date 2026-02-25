@@ -47,16 +47,16 @@
     "title": "Projects",
     "description": "Real systems running in production. Not demos, not prototypes.",
     "sortina": {
-      "description": "Logistics rate management platform with multi-role access and real-time data."
+      "description": "Internal platform for managing logistics rates across regions, transport modes, and contractors."
     },
     "dcc": {
-      "description": "Ground station for drone fleet management with live telemetry and mission planning."
+      "description": "Companion computer system for drone operations — telemetry, computer vision, and remote connectivity."
     },
     "china-tours": {
-      "description": "Platform connecting businesses with 258+ tech companies for organized factory visits."
+      "description": "Catalog of 258 Chinese tech companies with ready-made tour programs and an application system."
     },
     "mux": {
-      "description": "Custom hardware & firmware for multi-channel analog video switching with serial control."
+      "description": "Custom firmware for CRSF/ELRS signal relay between RC radios and multiple TX modules."
     },
     "caseStudy": {
       "challenge": "Challenge",
@@ -66,18 +66,18 @@
       "timeline": "Timeline",
       "backToProjects": "Back to projects"
     },
-    "sortina_challenge": "A logistics company needed a centralized platform to manage shipping rates across multiple regions, transport modes, and contractors. The existing spreadsheet-based system was error-prone and couldn't scale.",
-    "sortina_solution": "Built a full-stack rate management platform with role-based access (Admin, Manager, Viewer), real-time rate editing, contractor management, and comprehensive search/filter capabilities. Multi-currency support with automatic conversion.",
-    "sortina_result": "Deployed to production serving daily operations. Reduced rate lookup time from minutes to seconds. Zero data entry errors since launch. Multi-region support enabled expansion to new markets.",
-    "dcc_challenge": "Operating a drone fleet required real-time telemetry monitoring, mission planning, and reliable communication with flight controllers over MAVLink protocol. No existing GCS met the specific requirements.",
-    "dcc_solution": "Custom ground control station with live telemetry dashboard, mission planning interface, relay network architecture for extended range, and integration with custom CRSF-based video systems.",
-    "dcc_result": "Active development with field testing. Real-time telemetry at 10Hz update rate. Modular relay network enabling beyond-line-of-sight operations. Custom protocol analyzer for debugging.",
-    "china-tours_challenge": "A consulting firm needed a platform to organize factory visits to 258+ Chinese tech companies, with detailed company profiles, tour scheduling, and multi-language support for international clients.",
-    "china-tours_solution": "Built a Next.js application with Supabase backend, featuring company search with 15+ filter criteria, interactive tour builder, and full internationalization (EN/RU/ZH).",
-    "china-tours_result": "Launched in production. Enabled systematic discovery of Chinese manufacturers. Tour scheduling reduced planning time by 80%. Multi-language interface serves clients from 4 countries.",
-    "mux_challenge": "FPV drone systems needed a way to switch between multiple analog video feeds using existing RC controller channels, with minimal latency and no signal degradation.",
-    "mux_solution": "Designed custom PCB with STM32 microcontroller, analog multiplexer ICs, and CRSF serial protocol parsing. Firmware handles channel mapping, failsafe logic, and sub-millisecond switching.",
-    "mux_result": "Working prototypes in field testing. Sub-1ms video switching latency. Custom Logic Analyzer HLA extension built for protocol debugging. Open-source CRSF parser library published."
+    "sortina_challenge": "Managing shipping rates across multiple regions, transport modes, and contractors was done manually. Rate lookups were slow and error-prone.",
+    "sortina_solution": "Full-stack platform with role-based access, rate search with multi-criteria filtering, contractor management, multi-currency support, and a complete audit trail.",
+    "sortina_result": "Running in production. Rate lookups reduced to seconds. Role-based access for the team with full audit logging of every change.",
+    "dcc_challenge": "Needed a companion computer system for drones running on Raspberry Pi — MAVLink telemetry, computer vision, and reliable remote connectivity through 4G and VPN.",
+    "dcc_solution": "Web portal on Raspberry Pi 5 connected to PX4 flight controller. MAVLink integration, YOLO-based CV, WiFi scanner, and a relay network with WireGuard VPN over 4G.",
+    "dcc_result": "Active development with field testing. Web portal running on the drone, relay network providing remote access, multiple systemd services managing the stack.",
+    "china-tours_challenge": "Needed a platform to present a catalog of Chinese tech companies with ready-made tour programs and a way for clients to submit visit applications.",
+    "china-tours_solution": "Next.js application with Supabase backend. Company catalog with filters, pre-built tour programs linking to companies, and an application form with admin panel.",
+    "china-tours_result": "Deployed as MVP. 258 companies in the catalog, multiple tour programs, and a working application pipeline.",
+    "mux_challenge": "Needed to relay CRSF protocol data from a single RC radio to multiple ELRS TX modules simultaneously, with proper frame routing and timing.",
+    "mux_solution": "Custom firmware on STM32H743 that parses CRSF frames from the radio input, routes RC channels and service frames (HANDSET, Lua, MSP) to multiple TX module outputs via UART.",
+    "mux_result": "Active development. CRSF frame parsing and relay working. Published a Saleae Logic protocol analyzer extension for CRSF debugging."
   },
   "about": {
     "label": "Who we are",

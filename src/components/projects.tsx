@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { PROJECTS } from "@/lib/site-config";
 import { staggerVariants } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -35,39 +37,48 @@ export const Projects = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
-              className="group grid items-center gap-6 py-8 md:grid-cols-12 md:py-10"
             >
-              <div className="hidden font-mono text-5xl font-bold text-surface-3 transition-colors group-hover:text-border-light md:col-span-1 md:block">
-                {String(i + 1).padStart(2, "0")}
-              </div>
-
-              <div className="md:col-span-3">
-                <div className="flex items-center gap-3">
-                  <h3 className="font-display text-xl font-bold text-text-primary transition-colors group-hover:text-accent">
-                    {project.title}
-                  </h3>
-                  <span
-                    className={`rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider ${STATUS_STYLES[project.status].className}`}
-                  >
-                    {t(STATUS_STYLES[project.status].key)}
-                  </span>
+              <Link
+                href={`/projects/${project.id}`}
+                className="group grid items-center gap-6 py-8 md:grid-cols-12 md:py-10"
+                data-umami-event="project-click"
+                data-umami-event-slug={project.id}
+              >
+                <div className="hidden font-mono text-5xl font-bold text-surface-3 transition-colors group-hover:text-border-light md:col-span-1 md:block">
+                  {String(i + 1).padStart(2, "0")}
                 </div>
-              </div>
 
-              <p className="text-text-secondary md:col-span-5">
-                {t(`${project.id}.description`)}
-              </p>
+                <div className="md:col-span-3">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-display text-xl font-bold text-text-primary transition-colors group-hover:text-accent">
+                      {project.title}
+                    </h3>
+                    <span
+                      className={`rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider ${STATUS_STYLES[project.status].className}`}
+                    >
+                      {t(STATUS_STYLES[project.status].key)}
+                    </span>
+                  </div>
+                </div>
 
-              <div className="flex flex-wrap gap-2 md:col-span-3 md:justify-end">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-xs text-text-muted"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                <p className="text-text-secondary md:col-span-4">
+                  {t(`${project.id}.description`)}
+                </p>
+
+                <div className="flex items-center gap-4 md:col-span-4 md:justify-end">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-xs text-text-muted"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <ArrowRight size={16} className="shrink-0 text-text-muted transition-colors group-hover:text-accent" />
+                </div>
+              </Link>
             </motion.li>
           ))}
         </ol>

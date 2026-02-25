@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import type { ContactFormData } from "./contact-schema";
+import { SITE_CONFIG } from "./site-config";
 
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT ?? 587);
@@ -58,7 +59,7 @@ function buildAutoReplyHtml(name: string): string {
     <div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;padding:24px;">
       <h2 style="color:#f97316;margin-bottom:16px;">Thank you, ${escapeHtml(name)}!</h2>
       <p style="color:#a1a1aa;line-height:1.6;">We've received your message and will get back to you within 24 hours.</p>
-      <p style="color:#a1a1aa;line-height:1.6;">In the meantime, feel free to reach out directly via <a href="mailto:hello@essentialhustle.dev" style="color:#f97316;">hello@essentialhustle.dev</a></p>
+      <p style="color:#a1a1aa;line-height:1.6;">In the meantime, feel free to reach out directly via <a href="mailto:${escapeHtml(SITE_CONFIG.email)}" style="color:#f97316;">${escapeHtml(SITE_CONFIG.email)}</a></p>
       <p style="margin-top:24px;color:#71717a;font-size:14px;">— Essential Hustle Team</p>
     </div>
   `;

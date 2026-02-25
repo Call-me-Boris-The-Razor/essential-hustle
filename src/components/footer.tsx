@@ -14,7 +14,7 @@ export const Footer = () => {
     <footer className="border-t border-border py-12">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          {/* Brand */}
+          {/* Brand + version */}
           <div className="flex items-center gap-2">
             <span className="font-display text-sm font-bold text-text-primary">
               {SITE_CONFIG.name}
@@ -24,6 +24,17 @@ export const Footer = () => {
             <span className="font-mono text-xs text-text-muted">
               &copy; {currentYear}
             </span>
+            {process.env.APP_VERSION && (
+              <>
+                <span className="text-text-muted">|</span>
+                <span className="font-mono text-xs text-text-muted">
+                  v{process.env.APP_VERSION}
+                  {process.env.GIT_HASH && process.env.GIT_HASH !== "unknown" && (
+                    <> · {process.env.GIT_HASH}</>
+                  )}
+                </span>
+              </>
+            )}
           </div>
 
           {/* Nav */}

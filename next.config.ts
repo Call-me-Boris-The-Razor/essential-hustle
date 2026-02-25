@@ -1,5 +1,18 @@
+import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+
+// Build-time version injection — auto from package.json + git
+const APP_VERSION = process.env.APP_VERSION
+  ?? (JSON.parse(readFileSync("./package.json", "utf-8")) as { version: string }).version;
+
+const GIT_HASH = process.env.GIT_HASH !== "unknown" && process.env.GIT_HASH
+  ? process.env.GIT_HASH
+  : (() => {
+      try { return execSync("git rev-parse --short HEAD").toString().trim(); }
+      catch { return "unknown"; }
+    })();
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -49,6 +62,10 @@ const CACHE_ASSETS = [
 const nextConfig: NextConfig = {
   output: "standalone",
   reactCompiler: true,
+  env: {
+    APP_VERSION,
+    GIT_HASH,
+  },
   headers: async () => [
     { source: "/(.*)", headers: SECURITY_HEADERS },
     { source: "/_next/static/:path*", headers: CACHE_STATIC_LONG },

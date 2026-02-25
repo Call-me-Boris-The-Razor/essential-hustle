@@ -42,8 +42,8 @@ export const getPost = (slug: string): BlogPost | null => {
   const { text: readTime } = readingTime(content);
 
   return {
-    slug,
-    title: data.title ?? slug,
+    slug: safe,
+    title: data.title ?? safe,
     date: data.date ?? new Date().toISOString(),
     description: data.description ?? "",
     tags: data.tags ?? [],

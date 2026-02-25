@@ -66,8 +66,8 @@ export const ContactForm = () => {
 
   if (state === "success") {
     return (
-      <div className="flex flex-col items-center gap-3 py-8 text-center">
-        <CheckCircle size={32} className="text-green-500" />
+      <div role="status" aria-live="polite" className="flex flex-col items-center gap-3 py-8 text-center">
+        <CheckCircle size={32} className="text-green-500" aria-hidden="true" />
         <p className="text-lg font-medium text-text-primary">{t("success")}</p>
         <p className="text-sm text-text-muted">{t("successSub")}</p>
         <button
@@ -103,11 +103,13 @@ export const ContactForm = () => {
           type="text"
           required
           autoComplete="name"
+          aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
+          aria-invalid={fieldErrors.name ? true : undefined}
           className={INPUT_CLASS}
           placeholder={t("namePlaceholder")}
         />
         {fieldErrors.name && (
-          <p className="mt-1 text-xs text-red-400">{fieldErrors.name}</p>
+          <p id="contact-name-error" role="alert" className="mt-1 text-xs text-red-400">{fieldErrors.name}</p>
         )}
       </div>
 
@@ -121,11 +123,13 @@ export const ContactForm = () => {
           type="email"
           required
           autoComplete="email"
+          aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
+          aria-invalid={fieldErrors.email ? true : undefined}
           className={INPUT_CLASS}
           placeholder={t("emailPlaceholder")}
         />
         {fieldErrors.email && (
-          <p className="mt-1 text-xs text-red-400">{fieldErrors.email}</p>
+          <p id="contact-email-error" role="alert" className="mt-1 text-xs text-red-400">{fieldErrors.email}</p>
         )}
       </div>
 
@@ -138,17 +142,19 @@ export const ContactForm = () => {
           name="message"
           required
           rows={4}
+          aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}
+          aria-invalid={fieldErrors.message ? true : undefined}
           className={`${INPUT_CLASS} resize-none`}
           placeholder={t("messagePlaceholder")}
         />
         {fieldErrors.message && (
-          <p className="mt-1 text-xs text-red-400">{fieldErrors.message}</p>
+          <p id="contact-message-error" role="alert" className="mt-1 text-xs text-red-400">{fieldErrors.message}</p>
         )}
       </div>
 
       {state === "error" && (
-        <div className="flex items-center gap-2 rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-400">
-          <AlertCircle size={16} />
+        <div role="alert" className="flex items-center gap-2 rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-400">
+          <AlertCircle size={16} aria-hidden="true" />
           {error}
         </div>
       )}

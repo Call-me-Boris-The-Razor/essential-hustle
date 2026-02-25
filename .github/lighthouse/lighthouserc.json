@@ -1,9 +1,8 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": ".next/standalone",
-      "startServerCommand": "npm run start",
-      "startServerReadyPattern": "Ready",
+      "startServerCommand": "node .next/standalone/server.js",
+      "startServerReadyPattern": "Ready|started server",
       "url": ["http://localhost:3000"]
     },
     "assert": {

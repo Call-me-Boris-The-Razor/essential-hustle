@@ -29,9 +29,9 @@ export const SERVICES = [
 
 export const PROJECTS = [
   { id: "sortina", title: "Sortina", tags: ["React", "Fastify", "Prisma", "Docker"], status: "production" as const },
-  { id: "dcc", title: "Drone Control Center", tags: ["Python", "MAVLink", "WebSocket", "Flask"], status: "active" as const },
+  { id: "dcc", title: "Drone Control Center", tags: ["Python", "MAVLink", "Raspberry Pi", "Flask"], status: "active" as const },
   { id: "china-tours", title: "China Business Tours", tags: ["Next.js", "Supabase", "TypeScript"], status: "production" as const },
-  { id: "mux", title: "Video Multiplexor", tags: ["C", "STM32", "CRSF", "Custom PCB"], status: "active" as const },
+  { id: "mux", title: "CRSF Relay", tags: ["C", "STM32", "CRSF/ELRS", "Custom PCB"], status: "active" as const },
 ] as const;
 
 export const TESTIMONIAL_COUNT = 3;

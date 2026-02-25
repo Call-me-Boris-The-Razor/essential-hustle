@@ -20,9 +20,9 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
   {
     slug: "dcc",
     title: "Drone Control Center",
-    tags: ["Python", "MAVLink", "WebSocket", "Flask"],
+    tags: ["Python", "MAVLink", "Raspberry Pi", "Flask"],
     status: "active",
-    stack: ["Python 3.12", "Flask", "MAVLink", "WebSocket", "CRSF Protocol", "Raspberry Pi", "Docker"],
+    stack: ["Python 3.12", "Flask", "MAVLink", "WireGuard", "Raspberry Pi 5", "PX4", "YOLO", "systemd"],
     timeline: "6 months",
   },
   {
@@ -30,15 +30,15 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
     title: "China Business Tours",
     tags: ["Next.js", "Supabase", "TypeScript"],
     status: "production",
-    stack: ["Next.js 15", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "PostgreSQL"],
+    stack: ["Next.js 14", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion", "PostgreSQL"],
     timeline: "2 months",
   },
   {
     slug: "mux",
-    title: "Video Multiplexor",
-    tags: ["C", "STM32", "CRSF", "Custom PCB"],
+    title: "CRSF Relay",
+    tags: ["C", "STM32", "CRSF/ELRS", "Custom PCB"],
     status: "active",
-    stack: ["C", "STM32 HAL", "KiCad", "CRSF Protocol", "UART", "Analog Multiplexers", "Logic Analyzer"],
+    stack: ["C", "STM32H743", "Betaflight", "CRSF Protocol", "ELRS", "UART", "Saleae Logic"],
     timeline: "4 months",
   },
 ] as const;

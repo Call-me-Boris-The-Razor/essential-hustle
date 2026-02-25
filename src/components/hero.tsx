@@ -80,12 +80,14 @@ export const Hero = () => {
             <MagneticButton
               href="#services"
               className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+              data-umami-event="hero-explore-services"
             >
               {t("ctaPrimary")}
             </MagneticButton>
             <MagneticButton
               href="#projects"
               className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-1"
+              data-umami-event="hero-view-projects"
             >
               {t("ctaSecondary")}
             </MagneticButton>

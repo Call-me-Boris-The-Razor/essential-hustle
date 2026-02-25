@@ -27,6 +27,8 @@ export const ThemeToggle = () => {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="rounded-lg p-2 text-text-muted transition-colors hover:bg-surface-2 hover:text-text-primary"
       aria-label={isDark ? t("switchToLight") : t("switchToDark")}
+      data-umami-event="theme-toggle"
+      data-umami-event-theme={isDark ? "light" : "dark"}
     >
       {isDark ? <Sun size={18} /> : <Moon size={18} />}
     </button>

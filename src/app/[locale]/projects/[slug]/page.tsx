@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing";
 import { ArrowLeft, Clock, Zap, Target, Rocket } from "lucide-react";
 import { CASE_STUDIES, getCaseStudy } from "@/lib/case-studies";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { buildBreadcrumbLd } from "@/lib/breadcrumb-ld";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -44,7 +45,17 @@ export default async function CaseStudyPage({ params }: Props) {
     { key: "result", icon: SECTION_ICONS.result, text: t(`${cs.slug}_result`) },
   ];
 
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: t("title"), path: "/#projects" },
+    { name: cs.title, path: `/projects/${cs.slug}` },
+  ]);
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
     <div className="mx-auto max-w-3xl px-6 py-32">
       <Link
         href="/#projects"
@@ -141,5 +152,6 @@ export default async function CaseStudyPage({ params }: Props) {
         </div>
       </nav>
     </div>
+    </>
   );
 }

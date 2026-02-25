@@ -73,6 +73,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <JsonLd />
         <link rel="author" href="/humans.txt" />
         <link rel="alternate" type="application/json" href="/api/site-summary" />

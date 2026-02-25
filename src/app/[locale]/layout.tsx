@@ -22,7 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${SITE_CONFIG.name} — ${t("tagline")}`,
     description: t("description"),
     metadataBase: new URL(`https://${SITE_CONFIG.domain}`),
-    icons: { icon: "/favicon.svg" },
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: "/site.webmanifest",
     openGraph: {
       title: `${SITE_CONFIG.name} — ${t("tagline")}`,
       description: t("description"),

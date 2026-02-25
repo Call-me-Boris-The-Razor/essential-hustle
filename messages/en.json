@@ -57,7 +57,27 @@
     },
     "mux": {
       "description": "Custom hardware & firmware for multi-channel analog video switching with serial control."
-    }
+    },
+    "caseStudy": {
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "result": "Result",
+      "stack": "Tech Stack",
+      "timeline": "Timeline",
+      "backToProjects": "Back to projects"
+    },
+    "sortina_challenge": "A logistics company needed a centralized platform to manage shipping rates across multiple regions, transport modes, and contractors. The existing spreadsheet-based system was error-prone and couldn't scale.",
+    "sortina_solution": "Built a full-stack rate management platform with role-based access (Admin, Manager, Viewer), real-time rate editing, contractor management, and comprehensive search/filter capabilities. Multi-currency support with automatic conversion.",
+    "sortina_result": "Deployed to production serving daily operations. Reduced rate lookup time from minutes to seconds. Zero data entry errors since launch. Multi-region support enabled expansion to new markets.",
+    "dcc_challenge": "Operating a drone fleet required real-time telemetry monitoring, mission planning, and reliable communication with flight controllers over MAVLink protocol. No existing GCS met the specific requirements.",
+    "dcc_solution": "Custom ground control station with live telemetry dashboard, mission planning interface, relay network architecture for extended range, and integration with custom CRSF-based video systems.",
+    "dcc_result": "Active development with field testing. Real-time telemetry at 10Hz update rate. Modular relay network enabling beyond-line-of-sight operations. Custom protocol analyzer for debugging.",
+    "china-tours_challenge": "A consulting firm needed a platform to organize factory visits to 258+ Chinese tech companies, with detailed company profiles, tour scheduling, and multi-language support for international clients.",
+    "china-tours_solution": "Built a Next.js application with Supabase backend, featuring company search with 15+ filter criteria, interactive tour builder, and full internationalization (EN/RU/ZH).",
+    "china-tours_result": "Launched in production. Enabled systematic discovery of Chinese manufacturers. Tour scheduling reduced planning time by 80%. Multi-language interface serves clients from 4 countries.",
+    "mux_challenge": "FPV drone systems needed a way to switch between multiple analog video feeds using existing RC controller channels, with minimal latency and no signal degradation.",
+    "mux_solution": "Designed custom PCB with STM32 microcontroller, analog multiplexer ICs, and CRSF serial protocol parsing. Firmware handles channel mapping, failsafe logic, and sub-millisecond switching.",
+    "mux_result": "Working prototypes in field testing. Sub-1ms video switching latency. Custom Logic Analyzer HLA extension built for protocol debugging. Open-source CRSF parser library published."
   },
   "about": {
     "label": "Who we are",

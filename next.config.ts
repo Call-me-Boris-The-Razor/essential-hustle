@@ -34,11 +34,27 @@ const SECURITY_HEADERS = [
   },
 ];
 
+const CACHE_STATIC_LONG = [
+  { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+];
+
+const CACHE_HTML = [
+  { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+];
+
+const CACHE_ASSETS = [
+  { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+];
+
 const nextConfig: NextConfig = {
   output: "standalone",
   reactCompiler: true,
   headers: async () => [
     { source: "/(.*)", headers: SECURITY_HEADERS },
+    { source: "/_next/static/:path*", headers: CACHE_STATIC_LONG },
+    { source: "/favicon.svg", headers: CACHE_ASSETS },
+    { source: "/opengraph-image", headers: CACHE_ASSETS },
+    { source: "/:path*.html", headers: CACHE_HTML },
   ],
 };
 

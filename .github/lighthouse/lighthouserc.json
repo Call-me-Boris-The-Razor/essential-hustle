@@ -1,8 +1,8 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "node .next/standalone/server.js",
-      "startServerReadyPattern": "Ready|started server",
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready|started server|localhost",
       "url": ["http://localhost:3000"]
     },
     "assert": {

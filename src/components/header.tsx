@@ -45,7 +45,7 @@ export const Header = () => {
   }, [mobileOpen]);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-bg/80 backdrop-blur-xl">
+    <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-bg/80 backdrop-blur-xl pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="font-display text-lg font-bold tracking-tight text-text-primary">
@@ -87,13 +87,14 @@ export const Header = () => {
           </a>
         </div>
 
-        {/* Mobile: theme + menu toggle */}
-        <div className="flex items-center gap-2 lg:hidden">
+        {/* Mobile: language + theme + menu toggle */}
+        <div className="flex items-center gap-1 lg:hidden">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-text-secondary"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center text-text-secondary"
             aria-label={tCommon("toggleMenu")}
             aria-expanded={mobileOpen}
           >
@@ -102,48 +103,63 @@ export const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — backdrop + panel */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="border-t border-border/50 bg-bg/95 backdrop-blur-xl lg:hidden"
-          >
-            <div className="flex flex-col gap-4 px-6 py-6">
-              {NAV_LINKS.map((link) =>
-                isAnchor(link.href) ? (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    aria-current={isActive(link.href) ? "true" : undefined}
-                    className={navLinkClass(isActive(link.href), "base")}
-                  >
-                    {t(link.key)}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    aria-current={isActive(link.href) ? "true" : undefined}
-                    className={navLinkClass(isActive(link.href), "base")}
-                  >
-                    {t(link.key)}
-                  </Link>
-                ),
-              )}
-              <a
-                href={`mailto:${SITE_CONFIG.email}`}
-                className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-bg"
-                data-umami-event="mobile-get-in-touch"
-              >
-                {tHero("ctaContact")}
-              </a>
-            </div>
-          </motion.div>
+          <>
+            {/* Backdrop overlay — tap to close */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-bg/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Menu panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="fixed left-0 right-0 top-[57px] z-50 max-h-[calc(100dvh-57px)] overflow-y-auto border-t border-border/50 bg-bg/95 backdrop-blur-xl lg:hidden pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)]"
+            >
+              <div className="flex flex-col gap-1 px-6 py-4">
+                {NAV_LINKS.map((link) =>
+                  isAnchor(link.href) ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={isActive(link.href) ? "true" : undefined}
+                      className={`flex min-h-[44px] items-center ${navLinkClass(isActive(link.href), "base")}`}
+                    >
+                      {t(link.key)}
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={isActive(link.href) ? "true" : undefined}
+                      className={`flex min-h-[44px] items-center ${navLinkClass(isActive(link.href), "base")}`}
+                    >
+                      {t(link.key)}
+                    </Link>
+                  ),
+                )}
+                <a
+                  href={`mailto:${SITE_CONFIG.email}`}
+                  className="mt-2 flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-bg"
+                  data-umami-event="mobile-get-in-touch"
+                >
+                  {tHero("ctaContact")}
+                </a>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

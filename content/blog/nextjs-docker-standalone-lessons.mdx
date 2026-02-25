@@ -1,0 +1,125 @@
+---
+title: "Next.js Standalone Output in Docker: Lessons from Production"
+date: "2026-02-25"
+description: "Real-world pitfalls deploying Next.js 16 with standalone output in Docker — missing modules, healthcheck failures, and i18n middleware gotchas."
+tags: ["Next.js", "Docker", "TypeScript", "Production"]
+---
+
+Deploying Next.js with Docker's multi-stage builds and standalone output sounds straightforward. In practice, we hit several issues that aren't covered in the docs.
+
+## The Standalone Output Promise
+
+Next.js `output: "standalone"` generates a minimal Node.js server with only the necessary `node_modules`. The result is a Docker image that's 80% smaller than a full `npm install`. The theory is sound — the execution has sharp edges.
+
+## Problem 1: Missing @swc/helpers
+
+After building successfully, our container crashed on startup:
+
+```
+Error: Cannot find module '@swc/helpers'
+  code: 'MODULE_NOT_FOUND'
+```
+
+The standalone trace doesn't always include transitive dependencies that the runtime needs. The fix is surgical — copy the specific missing package from the builder stage:
+
+```dockerfile
+COPY --from=builder /app/node_modules/@swc ./node_modules/@swc
+```
+
+**Lesson:** Don't assume standalone output is complete. Test the container locally before deploying.
+
+## Problem 2: wget Doesn't Exist
+
+Our Dockerfile used a standard Alpine healthcheck:
+
+```dockerfile
+HEALTHCHECK CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
+```
+
+Container reported `unhealthy` forever. Alpine images in standalone mode don't include `wget`. The fix: use Node.js itself for the healthcheck:
+
+```dockerfile
+HEALTHCHECK CMD node -e "fetch('http://localhost:3000/').then(r=>{process.exit(r.ok?0:1)}).catch(()=>process.exit(1))"
+```
+
+Node 22 has native `fetch`, so no extra dependencies needed.
+
+## Problem 3: Port Conflicts
+
+Port 3000 is the default for Next.js, but it's also the default for dozens of other services. On our Ubuntu server, Open WebUI was already on 3000. Docker-compose with a configurable port solved it:
+
+```yaml
+ports:
+  - "${APP_PORT:-3000}:3000"
+```
+
+The container always listens on 3000 internally, but the host port is configurable via `.env`.
+
+## Problem 4: i18n Middleware and Locale Detection
+
+Next.js with `next-intl` middleware detects the browser's `Accept-Language` header and redirects accordingly. Great for user experience — terrible when you want a consistent default language.
+
+A Chinese user visiting your English-first business site gets redirected to `/zh` if their browser is set to Chinese. The fix:
+
+```typescript
+export const routing = defineRouting({
+  locales,
+  defaultLocale: "en",
+  localePrefix: "as-needed",
+  localeDetection: false, // Users switch manually
+});
+```
+
+## Our Production Dockerfile
+
+After iterating through these issues, here's the pattern we settled on:
+
+```dockerfile
+FROM node:22-alpine AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --ignore-scripts
+
+FROM node:22-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
+
+FROM node:22-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/node_modules/@swc ./node_modules/@swc
+
+USER nextjs
+EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD node -e "fetch('http://localhost:3000/').then(r=>{process.exit(r.ok?0:1)}).catch(()=>process.exit(1))"
+CMD ["node", "server.js"]
+```
+
+Key decisions:
+- **Three-stage build** — deps, builder, runner. Cache-friendly and minimal.
+- **Non-root user** — security baseline.
+- **Explicit @swc copy** — prevents MODULE_NOT_FOUND.
+- **Node-based healthcheck** — works in minimal Alpine images.
+- **No ENTRYPOINT** — simpler debugging with `docker exec`.
+
+## Deployment Without GitHub Access
+
+Our Ubuntu server sits behind the Great Firewall, making `git pull` unreliable. Our workaround: `rsync` changed files directly, then rebuild the container. Not elegant, but reliable:
+
+```bash
+rsync -avz src/ ubuntu:~/projects/app/src/
+ssh ubuntu "cd ~/projects/app && docker compose up -d --build"
+```
+
+## Takeaway
+
+Next.js standalone output is production-worthy, but test your container end-to-end. The gap between "builds successfully" and "runs in production" is where real engineering happens.

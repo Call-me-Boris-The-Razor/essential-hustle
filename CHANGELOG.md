@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2026-02-26
+
+### Added
+- **Error boundaries** — `global-error.tsx` (app-wide) + `[locale]/error.tsx` (locale segment) with styled retry button and i18n translations for EN/RU/ZH (#152)
+- **Version + git hash display** — footer shows `v{version} · {hash}` auto-injected at build time from `package.json` + `git rev-parse` (#174)
+- **Health API git hash** — `/api/health` now returns `gitHash` field alongside version (#158)
+- **Dependabot** — `.github/dependabot.yml` for weekly npm + monthly GitHub Actions updates (#161)
+
+### Fixed
+- **i18n middleware not active** — renamed `src/proxy.ts` → `src/middleware.ts` so Next.js actually picks up the middleware (#157)
+- **Health endpoint `require()` in ESM** — replaced runtime `require("package.json")` with build-time `process.env.APP_VERSION` — reliable in standalone Docker builds (#158)
+- **Hardcoded email in auto-reply** — `mail.ts` now uses `SITE_CONFIG.email` instead of hardcoded `hello@essentialhustle.dev` (#162)
+- **Blog slug inconsistency** — `getPost()` returns sanitized slug instead of original input (#165)
+- **Array index React keys** — `legal-page.tsx` uses `section.title` as key instead of array index (#165)
+
+### Security
+- **JSON-LD XSS prevention** — `json-ld.tsx` sanitizes output with `\u003c` escaping to prevent `</script>` injection (#165)
+
 ## [0.10.0] - 2026-02-25
 
 ### Added

@@ -6,6 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { getTranslations } from "next-intl/server";
 import { getPost, getSlugs } from "@/lib/blog";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { buildBreadcrumbLd } from "@/lib/breadcrumb-ld";
 import { mdxComponents } from "@/components/mdx-components";
 import type { Metadata } from "next";
 
@@ -51,11 +52,20 @@ export default async function BlogPostPage({ params }: Props) {
     keywords: post.tags.join(", "),
   };
 
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: t("title"), path: "/blog" },
+    { name: post.title, path: `/blog/${slug}` },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <article className="mx-auto max-w-3xl px-6 py-32">
         <Link

@@ -10,9 +10,10 @@ const organizationSchema = {
   "@type": "Organization",
   name: SITE_CONFIG.name,
   url: BASE_URL,
-  logo: `${BASE_URL}/favicon.svg`,
+  logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon.svg` },
   description: messages.meta.description,
   email: SITE_CONFIG.email,
+  foundingDate: String(SITE_CONFIG.established),
   sameAs: [SITE_CONFIG.github, SITE_CONFIG.telegram],
   knowsAbout: [...new Set(SERVICES.flatMap((s) => [...s.tags]))],
 };

@@ -128,7 +128,52 @@
     "backAll": "Back to all posts"
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: February 25, 2026",
+    "intro": "Essential Hustle (\"we\", \"us\", \"our\") respects your privacy. This policy explains how we collect, use, and protect your information when you visit essentialhustle.dev.",
+    "section1Title": "Information We Collect",
+    "section1p1": "We collect minimal information necessary to operate our website and respond to inquiries:",
+    "section1li1": "Contact form submissions: name, email address, and message content — provided voluntarily when you reach out to us.",
+    "section1li2": "Anonymous analytics: page views, referrer, browser type, country, and device type — collected via self-hosted Umami Analytics. No cookies, no personal identifiers, no tracking across sites.",
+    "section1li3": "Server logs: IP addresses in Nginx access logs, retained for 30 days for security monitoring.",
+    "section2Title": "How We Use Your Information",
+    "section2li1": "To respond to your contact form inquiries via email.",
+    "section2li2": "To improve our website based on anonymous usage patterns.",
+    "section2li3": "To monitor and prevent abuse of our services.",
+    "section3Title": "Analytics",
+    "section3p1": "We use Umami, a privacy-focused, self-hosted analytics platform. Umami does not use cookies, does not collect personal data, and is fully GDPR compliant. All analytics data is aggregated and anonymous.",
+    "section4Title": "Data Storage & Security",
+    "section4p1": "Contact form submissions are delivered via email and optionally via Telegram notification. We do not store form data in any database. Analytics data is stored on our self-hosted infrastructure within our private network.",
+    "section5Title": "Third-Party Services",
+    "section5p1": "We do not sell, share, or transfer your personal information to third parties. Our website does not load any third-party scripts, trackers, or advertising networks.",
+    "section6Title": "Your Rights",
+    "section6p1": "You may request deletion of any personal data we hold by contacting us at hello@essentialhustle.dev. Since we store minimal data, in most cases there is nothing to delete beyond email correspondence.",
+    "section7Title": "Contact",
+    "section7p1": "For privacy-related inquiries, contact us at hello@essentialhustle.dev."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: February 25, 2026",
+    "intro": "By accessing and using essentialhustle.dev, you agree to the following terms.",
+    "section1Title": "Services",
+    "section1p1": "Essential Hustle provides engineering consulting and development services. The website serves as an informational and contact platform. Project scope, deliverables, and terms are defined in individual agreements.",
+    "section2Title": "Intellectual Property",
+    "section2p1": "All content on this website — including text, design, code, and graphics — is owned by Essential Hustle unless otherwise stated. You may not reproduce, distribute, or create derivative works without written permission.",
+    "section3Title": "Contact Form",
+    "section3p1": "By submitting the contact form, you consent to receiving a reply via email. We will not add you to any mailing lists or send unsolicited communications beyond responding to your inquiry.",
+    "section4Title": "Limitation of Liability",
+    "section4p1": "This website is provided \"as is\" without warranties of any kind. Essential Hustle is not liable for any damages arising from the use of this website or reliance on its content.",
+    "section5Title": "Governing Law",
+    "section5p1": "These terms are governed by applicable international commercial law. Any disputes will be resolved through good-faith negotiation.",
+    "section6Title": "Changes",
+    "section6p1": "We may update these terms from time to time. Continued use of the website constitutes acceptance of updated terms.",
+    "section7Title": "Contact",
+    "section7p1": "For questions about these terms, contact us at hello@essentialhustle.dev."
   },
   "common": {
     "toggleMenu": "Toggle menu",

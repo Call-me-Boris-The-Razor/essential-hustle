@@ -8,6 +8,7 @@ import { GitHubIcon, TelegramIcon } from "@/components/ui/icons";
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   const t = useTranslations("nav");
+  const tFooter = useTranslations("footer");
 
   return (
     <footer className="border-t border-border py-12">
@@ -26,7 +27,7 @@ export const Footer = () => {
           </div>
 
           {/* Nav */}
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {NAV_LINKS.map((link) =>
               link.href.startsWith("#") ? (
                 <a
@@ -46,6 +47,18 @@ export const Footer = () => {
                 </Link>
               ),
             )}
+            <Link
+              href="/privacy"
+              className="text-sm text-text-muted transition-colors hover:text-text-secondary"
+            >
+              {tFooter("privacy")}
+            </Link>
+            <Link
+              href="/terms"
+              className="text-sm text-text-muted transition-colors hover:text-text-secondary"
+            >
+              {tFooter("terms")}
+            </Link>
           </div>
 
           {/* Links */}

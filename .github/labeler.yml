@@ -1,0 +1,30 @@
+# Auto-label PRs based on changed file paths
+
+infra:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Dockerfile"
+          - "docker-compose.yml"
+          - ".github/workflows/**"
+          - ".dockerignore"
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "*.md"
+          - "messages/**"
+          - "content/**"
+
+security:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "next.config.ts"
+          - "src/middleware.ts"
+          - "src/proxy.ts"
+          - "src/app/actions/**"
+
+refactor:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/lib/**"
+          - "src/components/ui/**"

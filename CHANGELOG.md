@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-02-25
+
+### Added
+- **Contact form email delivery** — nodemailer SMTP transport to `hello@essentialhustle.dev` with auto-reply to sender (#124)
+- **Telegram notifications** — instant Bot API notifications on contact form submission, fire-and-forget (#125)
+- **Case study detail pages** — `/projects/[slug]` with Challenge/Solution/Result sections, tech stack, timeline, navigation between projects (#126)
+- **Privacy Policy page** — `/privacy` with GDPR-compliant content, i18n (EN/RU/ZH) (#128)
+- **Terms of Service page** — `/terms` with i18n (EN/RU/ZH) (#128)
+- **Blog post** — "Next.js Standalone Output in Docker: Lessons from Production" (#130)
+- **Footer legal links** — Privacy Policy and Terms of Service in footer navigation
+- **Umami events** — `project-click`, `case-study-nav`, `case-study-back` tracking
+
+### Changed
+- **Projects section** — rows now link to case study detail pages with ArrowRight indicator
+- **Rate limiting** — hardened with IP + email fallback, 1 min sliding window
+
+### Security
+- **Email subject sanitization** — `sanitizeSubject()` strips control characters to prevent header injection
+- **SMTP timeouts** — 10s connection, 15s socket to prevent hanging requests
+- **Notification decoupled from auto-reply** — primary delivery determines success independently
+
 ## [0.8.1] - 2026-02-25
 
 ### Fixed

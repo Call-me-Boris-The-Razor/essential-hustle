@@ -3,6 +3,14 @@ import { SITE_CONFIG } from "@/lib/site-config";
 
 const BASE_URL = `https://${SITE_CONFIG.domain}`;
 
+/** Escape XML special characters for use outside CDATA */
+const escapeXml = (s: string): string =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/** Escape CDATA terminator to prevent XML injection */
+const escapeCdata = (s: string): string =>
+  s.replace(/]]>/g, "]]]]><![CDATA[>");
+
 export async function GET() {
   const posts = getAllPosts();
 
@@ -10,12 +18,12 @@ export async function GET() {
     .map(
       (post) => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
+      <title><![CDATA[${escapeCdata(post.title)}]]></title>
       <link>${BASE_URL}/blog/${post.slug}</link>
       <guid isPermaLink="true">${BASE_URL}/blog/${post.slug}</guid>
-      <description><![CDATA[${post.description}]]></description>
+      <description><![CDATA[${escapeCdata(post.description)}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      ${post.tags.map((t) => `<category>${t}</category>`).join("\n      ")}
+      ${post.tags.map((t) => `<category>${escapeXml(t)}</category>`).join("\n      ")}
     </item>`,
     )
     .join("");

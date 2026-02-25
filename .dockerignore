@@ -4,9 +4,14 @@ node_modules
 .github
 .githooks
 scripts
+AGENT.md
+CHANGELOG.md
+LICENSE
 *.md
+!README.md
 .env*
 !.env.example
 .DS_Store
 .vscode
 .idea
+.windsurf

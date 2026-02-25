@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-02-25
+
+### Added
+- **Production Dockerfile** — multi-stage build (deps → builder → runner) with Node 22 Alpine, non-root user, healthcheck, standalone output (#111)
+- **docker-compose.yml** — production orchestration with configurable port, env_file, restart policy, log rotation (#112)
+
+### Fixed
+- **metadataBase** — added to root `layout.tsx` so `opengraph-image.tsx` resolves OG images to `essentialhustle.dev` instead of `localhost:3000` (#109)
+- **middleware → proxy** — renamed `middleware.ts` to `proxy.ts` per Next.js 16 deprecation (#110)
+
+### Changed
+- `next.config.ts` — added `output: "standalone"` for Docker-optimized builds
+- `.dockerignore` — updated with `.windsurf` exclusion
+
 ## [0.7.1] - 2026-02-25
 
 ### Security

@@ -28,6 +28,8 @@ describe("i18n message files", () => {
   const messages: Record<string, Record<string, unknown>> = {};
   const keysByLocale: Record<string, string[]> = {};
 
+  type LocaleKey = (typeof locales)[number];
+
   // Load all locale files
   for (const locale of locales) {
     messages[locale] = loadMessages(locale);
@@ -43,8 +45,8 @@ describe("i18n message files", () => {
     });
 
     it("en.json and ru.json have identical key sets", () => {
-      const enKeys = keysByLocale.en;
-      const ruKeys = keysByLocale.ru;
+      const enKeys = keysByLocale.en!;
+      const ruKeys = keysByLocale.ru!;
 
       const missingInRu = enKeys.filter((k) => !ruKeys.includes(k));
       const extraInRu = ruKeys.filter((k) => !enKeys.includes(k));
@@ -54,8 +56,8 @@ describe("i18n message files", () => {
     });
 
     it("en.json and zh.json have identical key sets", () => {
-      const enKeys = keysByLocale.en;
-      const zhKeys = keysByLocale.zh;
+      const enKeys = keysByLocale.en!;
+      const zhKeys = keysByLocale.zh!;
 
       const missingInZh = enKeys.filter((k) => !zhKeys.includes(k));
       const extraInZh = zhKeys.filter((k) => !enKeys.includes(k));
@@ -81,7 +83,7 @@ describe("i18n message files", () => {
           }
         }
 
-        checkEmpty(messages[locale]);
+        checkEmpty(messages[locale]!);
         expect(emptyKeys).toEqual([]);
       });
     }
@@ -96,7 +98,7 @@ describe("i18n message files", () => {
         for (const [key, value] of Object.entries(obj)) {
           const fullKey = prefix ? `${prefix}.${key}` : key;
           if (typeof value === "string") {
-            const matches = [...value.matchAll(placeholderRegex)].map((m) => m[1]);
+            const matches = [...value.matchAll(placeholderRegex)].map((m) => m[1]).filter((v): v is string => v !== undefined);
             if (matches.length > 0) {
               result.set(fullKey, matches.sort());
             }
@@ -108,9 +110,9 @@ describe("i18n message files", () => {
         return result;
       }
 
-      const enPlaceholders = extractPlaceholders(messages.en);
-      const ruPlaceholders = extractPlaceholders(messages.ru);
-      const zhPlaceholders = extractPlaceholders(messages.zh);
+      const enPlaceholders = extractPlaceholders(messages.en!);
+      const ruPlaceholders = extractPlaceholders(messages.ru!);
+      const zhPlaceholders = extractPlaceholders(messages.zh!);
 
       for (const [key, enVars] of enPlaceholders) {
         const ruVars = ruPlaceholders.get(key);
@@ -148,7 +150,7 @@ describe("i18n message files", () => {
     for (const locale of locales) {
       it(`${locale}.json has all required sections`, () => {
         for (const section of requiredSections) {
-          expect(messages[locale]).toHaveProperty(section);
+          expect(messages[locale]!).toHaveProperty(section);
         }
       });
     }

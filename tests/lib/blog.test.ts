@@ -211,8 +211,8 @@ describe("blog.ts", () => {
       const posts = getAllPosts();
 
       expect(posts).toHaveLength(2);
-      expect(posts[0].title).toBe("New Post");
-      expect(posts[1].title).toBe("Old Post");
+      expect(posts[0]!.title).toBe("New Post");
+      expect(posts[1]!.title).toBe("Old Post");
     });
 
     it("returns posts without content field (BlogPostMeta)", async () => {
@@ -223,13 +223,13 @@ describe("blog.ts", () => {
       const { getAllPosts } = await import("@/lib/blog");
       const posts = getAllPosts();
 
-      expect(posts[0]).not.toHaveProperty("content");
-      expect(posts[0]).toHaveProperty("slug");
-      expect(posts[0]).toHaveProperty("title");
-      expect(posts[0]).toHaveProperty("date");
-      expect(posts[0]).toHaveProperty("description");
-      expect(posts[0]).toHaveProperty("tags");
-      expect(posts[0]).toHaveProperty("readTime");
+      expect(posts[0]!).not.toHaveProperty("content");
+      expect(posts[0]!).toHaveProperty("slug");
+      expect(posts[0]!).toHaveProperty("title");
+      expect(posts[0]!).toHaveProperty("date");
+      expect(posts[0]!).toHaveProperty("description");
+      expect(posts[0]!).toHaveProperty("tags");
+      expect(posts[0]!).toHaveProperty("readTime");
     });
 
     it("returns empty array when no posts exist", async () => {

@@ -12,7 +12,18 @@ const AI_BOTS = [
   "cohere-ai",
 ] as const;
 
+const isProduction =
+  process.env.SITE_URL?.includes(SITE_CONFIG.domain) ??
+  process.env.NODE_ENV === "production";
+
 export default function robots(): MetadataRoute.Robots {
+  // Block indexing on staging/preview/dev environments
+  if (!isProduction) {
+    return {
+      rules: [{ userAgent: "*", disallow: "/" }],
+    };
+  }
+
   return {
     rules: [
       { userAgent: "*", allow: "/" },

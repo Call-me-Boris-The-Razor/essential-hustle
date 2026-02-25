@@ -13,7 +13,7 @@ describe("breadcrumb-ld.ts", () => {
 
     it("always includes Home as first item (position 1)", () => {
       const result = buildBreadcrumbLd([]);
-      const home = result.itemListElement[0];
+      const home = result.itemListElement[0]!;
 
       expect(home["@type"]).toBe("ListItem");
       expect(home.position).toBe(1);
@@ -33,17 +33,17 @@ describe("breadcrumb-ld.ts", () => {
       ]);
 
       expect(result.itemListElement).toHaveLength(3);
-      expect(result.itemListElement[1].position).toBe(2);
-      expect(result.itemListElement[1].name).toBe("Blog");
-      expect(result.itemListElement[1].item).toBe("https://essentialhustle.dev/blog");
-      expect(result.itemListElement[2].position).toBe(3);
-      expect(result.itemListElement[2].name).toBe("Docker Infrastructure");
+      expect(result.itemListElement[1]!.position).toBe(2);
+      expect(result.itemListElement[1]!.name).toBe("Blog");
+      expect(result.itemListElement[1]!.item).toBe("https://essentialhustle.dev/blog");
+      expect(result.itemListElement[2]!.position).toBe(3);
+      expect(result.itemListElement[2]!.name).toBe("Docker Infrastructure");
     });
 
     it("prepends BASE_URL to all item paths", () => {
       const result = buildBreadcrumbLd([{ name: "Projects", path: "/projects" }]);
 
-      const projectItem = result.itemListElement[1];
+      const projectItem = result.itemListElement[1]!;
       expect(projectItem.item).toBe("https://essentialhustle.dev/projects");
     });
 

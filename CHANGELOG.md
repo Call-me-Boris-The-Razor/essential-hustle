@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] - 2026-02-25
+
+### Fixed
+- **ThemeToggle ESLint** — replaced `useState+useEffect` mount detection with `useSyncExternalStore` (canonical React pattern) (#114)
+- **@swc/helpers conflict** — resolved version mismatch via `overrides` in package.json (#114)
+- **Lighthouse CI** — fixed config for standalone output, relaxed thresholds for CI runners (#114)
+- **Dockerfile** — copy `@swc/helpers` to standalone output (runtime MODULE_NOT_FOUND fix) (#118)
+- **Tablet header overflow** — raised mobile menu breakpoint from `md` (768px) to `lg` (1024px) (#115, #116)
+- **RSS feed XML injection** — added `escapeXml()` for category tags and `escapeCdata()` for CDATA sections (#117)
+
+### Added
+- **Production deployment** — site live at `https://essentialhustle.dev`
+- **Nginx reverse proxy** on VPS with SSL (Let's Encrypt)
+- **autossh tunnel** Ubuntu:3002 → VPS:3003
+
+### Changed
+- **Repo governance** — issue templates, PR template, CODEOWNERS, auto-labeler, 12 custom labels (#113)
+
 ## [0.8.0] - 2026-02-25
 
 ### Added

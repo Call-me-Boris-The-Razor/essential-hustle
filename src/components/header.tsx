@@ -54,7 +54,7 @@ export const Header = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) =>
             isAnchor(link.href) ? (
               <a
@@ -87,7 +87,7 @@ export const Header = () => {
         </div>
 
         {/* Mobile: theme + menu toggle */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -108,7 +108,7 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-border/50 bg-bg/95 backdrop-blur-xl md:hidden"
+            className="border-t border-border/50 bg-bg/95 backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-6">
               {NAV_LINKS.map((link) =>

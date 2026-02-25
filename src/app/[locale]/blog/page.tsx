@@ -39,7 +39,7 @@ export default async function BlogPage({ params }: Props) {
         <div className="space-y-12">
           {posts.map((post) => (
             <article key={post.slug} className="group">
-              <Link href={`/blog/${post.slug}`} className="block">
+              <Link href={`/blog/${post.slug}`} className="block" data-umami-event="blog-post-click" data-umami-event-slug={post.slug}>
                 <div className="flex items-center gap-3 text-sm text-text-muted">
                   <time dateTime={post.date}>
                     {new Date(post.date).toLocaleDateString(locale, {

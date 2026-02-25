@@ -56,6 +56,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="text-text-muted transition-colors hover:text-text-secondary"
               aria-label="GitHub"
+              data-umami-event="footer-github"
             >
               <GitHubIcon />
             </a>
@@ -65,6 +66,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="text-text-muted transition-colors hover:text-text-secondary"
               aria-label="Telegram"
+              data-umami-event="footer-telegram"
             >
               <TelegramIcon />
             </a>

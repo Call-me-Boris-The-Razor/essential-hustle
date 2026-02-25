@@ -81,6 +81,7 @@ export const Header = () => {
           <a
             href={`mailto:${SITE_CONFIG.email}`}
             className="rounded-full bg-accent px-5 py-2 text-sm font-medium text-bg transition-colors hover:bg-accent-hover"
+            data-umami-event="header-get-in-touch"
           >
             {tHero("ctaContact")}
           </a>
@@ -137,6 +138,7 @@ export const Header = () => {
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-bg"
+                data-umami-event="mobile-get-in-touch"
               >
                 {tHero("ctaContact")}
               </a>

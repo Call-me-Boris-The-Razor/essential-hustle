@@ -27,6 +27,8 @@ export const LanguageSwitcher = () => {
           }`}
           aria-label={localeNames[l]}
           aria-current={l === locale ? "true" : undefined}
+          data-umami-event="language-switch"
+          data-umami-event-locale={l}
         >
           {l.toUpperCase()}
         </button>

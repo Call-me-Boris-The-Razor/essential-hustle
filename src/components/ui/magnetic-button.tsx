@@ -9,6 +9,7 @@ interface MagneticButtonProps {
   strength?: number;
   target?: string;
   rel?: string;
+  [key: `data-${string}`]: string | undefined;
 }
 
 export const MagneticButton = ({
@@ -18,6 +19,7 @@ export const MagneticButton = ({
   strength = 0.15,
   target,
   rel,
+  ...dataAttrs
 }: MagneticButtonProps) => {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
 
@@ -42,7 +44,7 @@ export const MagneticButton = ({
 
   if (href) {
     return (
-      <a ref={ref as React.RefObject<HTMLAnchorElement>} href={href} target={target} rel={rel} {...props}>
+      <a ref={ref as React.RefObject<HTMLAnchorElement>} href={href} target={target} rel={rel} {...props} {...dataAttrs}>
         {children}
       </a>
     );

@@ -47,6 +47,7 @@ export const Contact = () => {
               <MagneticButton
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+                data-umami-event="contact-email"
               >
                 <Mail size={18} />
                 {SITE_CONFIG.email}
@@ -57,6 +58,7 @@ export const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-4 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-2"
+                data-umami-event="contact-telegram"
               >
                 {t("telegram")}
                 <ArrowUpRight size={16} />

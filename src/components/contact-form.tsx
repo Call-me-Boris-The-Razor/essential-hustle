@@ -53,6 +53,9 @@ export const ContactForm = () => {
       if (result.success) {
         setState("success");
         (e.target as HTMLFormElement).reset();
+        if (typeof window !== "undefined" && "umami" in window) {
+          (window as unknown as { umami: { track: (event: string) => void } }).umami.track("contact-form-submit");
+        }
       } else {
         setState("error");
         setError(t(result.error ?? "errorGeneric"));

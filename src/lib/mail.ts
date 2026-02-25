@@ -19,6 +19,9 @@ function getTransporter(): nodemailer.Transporter {
       port: SMTP_PORT,
       secure: SMTP_PORT === 465,
       auth: { user: SMTP_USER, pass: SMTP_PASS },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
     });
   }
   return transporter;
@@ -30,6 +33,11 @@ function escapeHtml(str: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+/** Strip control characters to prevent email header injection */
+function sanitizeSubject(str: string): string {
+  return str.replace(/[\r\n\t]/g, " ").slice(0, 200);
 }
 
 function buildNotificationHtml(data: ContactFormData): string {
@@ -68,27 +76,31 @@ export async function sendContactEmail(data: ContactFormData): Promise<boolean> 
 
   const transport = getTransporter();
 
+  // Notification to site owner (primary — determines success)
   try {
-    // Notification to site owner
     await transport.sendMail({
       from: `"Essential Hustle" <${MAIL_FROM}>`,
       to: MAIL_TO,
       replyTo: data.email,
-      subject: `[Contact] ${data.name}`,
+      subject: sanitizeSubject(`[Contact] ${data.name}`),
       html: buildNotificationHtml(data),
     });
+  } catch (err) {
+    console.error("[mail] Failed to send notification:", err);
+    return false;
+  }
 
-    // Auto-reply to sender
+  // Auto-reply to sender (best-effort — failure doesn't affect return value)
+  try {
     await transport.sendMail({
       from: `"Essential Hustle" <${MAIL_FROM}>`,
       to: data.email,
       subject: "We received your message — Essential Hustle",
       html: buildAutoReplyHtml(data.name),
     });
-
-    return true;
   } catch (err) {
-    console.error("[mail] Failed to send email:", err);
-    return false;
+    console.error("[mail] Auto-reply failed (non-critical):", err);
   }
+
+  return true;
 }

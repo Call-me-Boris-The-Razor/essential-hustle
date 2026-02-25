@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] - 2026-02-26
+
+### Added
+- **Complete sitemap** — case study pages (`/projects/*`) + legal pages (`/privacy`, `/terms`) with i18n alternates (#155)
+- **Loading states** — `loading.tsx` for locale routes (spinner) + blog routes (skeleton cards) (#159)
+- **`noUncheckedIndexedAccess`** — enabled in tsconfig for defensive programming, all TS errors fixed (#163)
+
+### Changed
+- **Lighthouse CI thresholds** — raised to v1.0.0 targets: performance ≥ 85%, accessibility/best-practices/SEO ≥ 95% (#160)
+- **Rate limiter** — periodic purge every 100 requests (not only at MAX_ENTRIES), documented single-instance limitation (#164)
+
+### Fixed
+- **Non-production indexing blocked** — `robots.ts` returns `Disallow: /` when `SITE_URL` doesn't match domain or `NODE_ENV` ≠ production (#166)
+
 ## [0.12.0] - 2026-02-26
 
 ### Added

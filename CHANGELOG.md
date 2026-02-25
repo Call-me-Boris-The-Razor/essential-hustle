@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2026-02-26
+
+### Added
+- **Vitest testing infrastructure** — `vitest.config.ts`, `tests/setup.ts`, global mocks for next-intl, next/navigation, i18n/routing (#153)
+- **147 unit tests across 13 test files** — comprehensive coverage of core modules (#167, #168, #169, #170, #171, #173)
+  - Blog engine: getSlugs, getPost, getAllPosts, path traversal prevention, edge cases (17 tests)
+  - Contact system: Zod schema validation, mail sending, Telegram notifications (46 tests)
+  - Site config & case studies: data integrity, ID uniqueness, URL safety (27 tests)
+  - SEO: breadcrumb JSON-LD, Organization/WebSite/Service schemas (14 tests)
+  - Utilities: motion variants, theme colors, EASE_OUT_EXPO (18 tests)
+  - API: health endpoint status/version/gitHash/cache headers (8 tests)
+  - i18n: message key completeness across EN/RU/ZH, placeholder sync, config (12+ tests)
+- **CI test step** — `npm test` runs between typecheck and build in `.github/workflows/ci.yml`
+- **Test scripts** — `test`, `test:watch`, `test:coverage` in package.json
+
 ## [0.11.0] - 2026-02-26
 
 ### Added

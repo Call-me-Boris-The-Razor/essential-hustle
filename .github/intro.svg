@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 100" fill="none">
+  <rect width="900" height="100" rx="10" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+  <text x="40" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#a1a1aa">Hand-built site for an engineering studio that ships infrastructure,</text>
+  <text x="40" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#a1a1aa">AI pipelines, embedded firmware, and web applications.</text>
+  <text x="40" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717a">No templates. No page builders. Every icon, animation, and layout — from scratch.</text>
+  <text x="810" y="30" font-family="monospace" font-size="11" fill="#f97316">i18n</text>
+  <text x="790" y="50" font-family="monospace" font-size="9" fill="#52525b">EN · RU · ZH</text>
+  <text x="790" y="74" font-family="monospace" font-size="9" fill="#52525b">SSG · Docker</text>
+</svg>
